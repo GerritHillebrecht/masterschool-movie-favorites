@@ -1,0 +1,7 @@
+.logo-text {
+    font-family: "Rubik Puddles", system-ui;
+    font-weight: 400;
+    font-style: normal;
+
+    color: rgb(108 43 217 / var(--tw-text-opacity, 1));
+}
