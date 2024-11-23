@@ -1,7 +1,48 @@
+:root {
+    --max-content-width: 1280px;
+}
+
+.search_bar {
+    animation: show_search 0.75s both ease-out;
+    animation-delay: 4.5s;
+}
+
+.content-container {
+    max-width: var(--max-content-width);
+    margin-inline: auto;
+}
+
 .logo-text {
-    font-family: "Rubik Puddles", system-ui;
+    font-family: "Moirai One", system-ui;
     font-weight: 400;
     font-style: normal;
+}
 
-    color: rgb(108 43 217 / var(--tw-text-opacity, 1));
+.logo-animate {
+    animation: flicker 5s both ease-in alternate infinite;
+}
+
+
+@keyframes flicker {
+    from {
+        opacity: 0.35;
+        transform: scale(1);
+    }
+
+    to {
+        opacity: 0.6;
+        transform: scale(1.05);
+    }
+}
+
+@keyframes show_search {
+    from {
+        opacity: 0;
+        transform: translateY(-30%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>PopcornPicks - {% block title %} {% endblock %}</title>
+    <title>Filmster - {% block title %} {% endblock %}</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{{ url_for('static', filename='images/logo.png') }}" type="image/x-icon">
@@ -12,13 +12,14 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik+Puddles&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Moirai+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     {% block css_imports %} {% endblock %}
 </head>
 <body>
 {% include "components/navbar.html" %}
 
+{% block hero %} {% endblock %}
 {% block content %} {% endblock %}
 
 {% include "components/footer.html" %}

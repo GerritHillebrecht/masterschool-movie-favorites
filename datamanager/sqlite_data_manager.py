@@ -1,41 +1,6 @@
-from abc import ABC, abstractmethod
-
-from flask import jsonify
-from sqlalchemy.exc import IntegrityError, SQLAlchemyError, DataError, OperationalError
-
-from data_schemas import User, Movie, Director
 from database.extensions import db
-
-
-class DataMangerInterface(ABC):
-
-    @abstractmethod
-    def get_all_users(self):
-        pass
-
-    @abstractmethod
-    def get_user_movies(self, user_id):
-        pass
-
-    @abstractmethod
-    def add_user(self, user: User):
-        pass
-
-    @abstractmethod
-    def add_movie(self, movie: Movie):
-        pass
-
-    @abstractmethod
-    def add_director(self, director: Director):
-        pass
-
-    @abstractmethod
-    def update_movie(self, movie: Movie):
-        pass
-
-    @abstractmethod
-    def delete_movie(self, movie_id: int):
-        pass
+from schemas import User, Movie, Director
+from .data_manager_interface import DataMangerInterface
 
 
 class SQLiteDataManager(DataMangerInterface):
@@ -65,6 +30,14 @@ class SQLiteDataManager(DataMangerInterface):
         """
         return db.session.query(Movie).join(Director).filter(Movie.user_id == user_id).all()
 
+    def get_user(self, user_id):
+        """
+
+        :param user_id:
+        :return:
+        """
+        return db.session.query(User).filter(User.id == user_id).one()
+
     def add_user(self, user: User) -> User:
         """
         Adds a user to the database.
@@ -81,6 +54,13 @@ class SQLiteDataManager(DataMangerInterface):
         """
         return self._add_instance(movie, Movie)
 
+    def get_all_directors(self) -> list[Director]:
+        """
+        Fetches all directors and returns them.
+        :return: list[dict]
+        """
+        return db.session.query(Director).join(Movie).all()
+
     def add_director(self, director: Director) -> Director:
         """
         Adds a director to the database.
@@ -89,56 +69,39 @@ class SQLiteDataManager(DataMangerInterface):
         """
         return self._add_instance(director, Director)
 
-    def update_movie(self, movie: Movie):
-        db_movie = db.session.query(Movie).filter(Movie.id == movie.id).one()
+    def update_movie(self, updated_movie_data, user_id: int, movie_id: int) -> Movie:
+        db_movie = db.session.query(Movie).filter(Movie.id == movie_id).one()
 
         if not db_movie:
-            return jsonify({"message": "User not found!"}), 404
+            raise ValueError(f"Movie {movie_id} not found!")
 
-        for key, value in db_movie.items():
+        for key, value in updated_movie_data.items():
             if hasattr(db_movie, key):
                 setattr(db_movie, key, value)
 
         db.session.commit()
 
+        return db_movie
+
     def delete_movie(self, movie_id):
         movie = db.session.query(Movie).filter(Movie.id == movie_id).one()
 
         if not movie:
-            return jsonify({"message": "User not found!"}), 404
+            raise ValueError(f"Movie {movie_id} not found!")
 
-        self._database_operation(db.session.delete, movie)
+        db.session.delete(movie)
+        db.session.commit()
 
-        return jsonify({
-            "message": f"Movie with id {movie_id} deleted successfully"
-        }), 200
+        return movie
 
-    def _add_instance(self, item, item_type):
+    @staticmethod
+    def _add_instance(item, item_type):
         # Validity check
         if not isinstance(item, item_type):
             raise ValueError(f"{item} is not of type {item_type}")
 
         # Add item to db
-        self._database_operation(db.session.add, item)
-
-        # Return updated item (including id and datestamps)
-        return item
-
-    def _database_operation(self, db_operation, item):
-        try:
-            db_operation(item)
-            db.session.commit()
-        except IntegrityError:
-            db.session.rollback()
-            return jsonify({"error": "Integrity error - Possible duplicate entry"}), 400
-        except DataError:
-            db.session.rollback()
-            return jsonify({"error": "Data error - Invalid data format or value"}), 400
-        except OperationalError:
-            db.session.rollback()
-            return jsonify({"error": "Operational error - Operational issue such as NOT NULL constraint"}), 500
-        except SQLAlchemyError as e:
-            db.session.rollback()
-            return jsonify({"error": str(e)}), 500
+        db.session.add(item)
+        db.session.commit()
 
         return item

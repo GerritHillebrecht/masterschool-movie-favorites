@@ -1,0 +1,20 @@
+{% extends "_base.html" %}
+
+{% block title %}
+Movies for {{user.firstname}} {{user.lastname}}
+{% endblock %}
+
+{% block content %}
+<div class="my-4 content-container">
+    <h1 class="text-3xl font-bold">My Movies</h1>
+    <p class="mb-6">{{user.firstname}} {{user.lastname}}</p>
+    <div class="grid grid-cols-3 gap-4">
+        {% for movie in movies %}
+        {% include "components/movie_card.html" %}
+        {% endfor %}
+        {% if movies|length == 0 %}
+        <p class="py-4">You haven't added any movies to your list yet.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
