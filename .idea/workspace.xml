@@ -4,43 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee16fce7-c09e-415e-b07c-8bcbaf2be080" name="Changes" comment="[feat] added basic datamanager functions">
-      <change afterPath="$PROJECT_DIR$/.flaskenv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/api_routes.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/static_routes.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/datamanager/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/datamanager/data_manager_interface.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/datamanager/sqlite_data_manager.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/schemas/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/schemas/base_schema.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/schemas/director_schema.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/schemas/movie_schema.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/schemas/user_schema.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/css/404.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/omdb.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/404.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/components/movie_card.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/components/navbar_menu.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/components/search_bar.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/components/user-card.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/search.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user_movies.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/users.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/decorators.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+    <list default="true" id="ee16fce7-c09e-415e-b07c-8bcbaf2be080" name="Changes" comment="[feat] updated prelimiary README.md">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_manager.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_schemas.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/global.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/_base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/_base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/components/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/components/footer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/components/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/components/navbar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/base_model_schema.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/to_dict_mixin_schema.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +23,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "GerritHillebrecht"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/GerritHillebrecht/masterschool-movie-favorites.git",
+    "accountId": "d7b14612-a7e5-49a7-9803-9010bf674d73"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
@@ -140,13 +117,40 @@
       <option name="project" value="LOCAL" />
       <updated>1732137157764</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="[feat] added flaskenv + foundation for templates">
+      <option name="closed" value="true" />
+      <created>1732363941537</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1732363941537</updated>
+    </task>
+    <task id="LOCAL-00005" summary="[feat] added prelimiary README.md">
+      <option name="closed" value="true" />
+      <created>1732364142640</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1732364142640</updated>
+    </task>
+    <task id="LOCAL-00006" summary="[feat] updated prelimiary README.md">
+      <option name="closed" value="true" />
+      <created>1732364480810</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1732364480810</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit" />
     <MESSAGE value="[feat] base structure" />
     <MESSAGE value="[feat] added basic datamanager functions" />
-    <option name="LAST_COMMIT_MESSAGE" value="[feat] added basic datamanager functions" />
+    <MESSAGE value="[feat] added flaskenv + foundation for templates" />
+    <MESSAGE value="[feat] added prelimiary README.md" />
+    <MESSAGE value="[feat] updated prelimiary README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="[feat] updated prelimiary README.md" />
   </component>
 </project>
