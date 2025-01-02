@@ -7,9 +7,9 @@ Users
 {% block content %}
 <main>
     <div class="content-container mt-8">
-        <h1 class="text-5xl font-bold mb-6 mt-4">
+        <h1 class="text-5xl mb-6 mt-4">
             <span class="logo-text">Filmster</span> Users</h1>
-        <div class="grid grid-cols-3 gap-4">
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
             {% for user in users %}
             {% include "components/user-card.html" with context %}
             {% endfor %}

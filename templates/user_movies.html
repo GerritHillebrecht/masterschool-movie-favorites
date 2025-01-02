@@ -8,9 +8,9 @@ Movies for {{user.firstname}} {{user.lastname}}
 <div class="my-4 content-container">
     <h1 class="text-3xl font-bold">My Movies</h1>
     <p class="mb-6">{{user.firstname}} {{user.lastname}}</p>
-    <div class="grid grid-cols-3 gap-4">
+    <div class="grid grid-cols-4 gap-4">
         {% for movie in movies %}
-        {% include "components/movie_card.html" %}
+        {% include "components/movie_card.html" with context %}
         {% endfor %}
         {% if movies|length == 0 %}
         <p class="py-4">You haven't added any movies to your list yet.</p>

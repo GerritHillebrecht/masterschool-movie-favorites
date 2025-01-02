@@ -27,6 +27,6 @@ class Director(BaseModel):
     id = Column(Integer, primary_key=True, autoincrement=True)
     firstname = Column(String, nullable=False)
     lastname = Column(String, nullable=False)
-    movies = db.relationship('Movie', back_populates='director', lazy=True, cascade="all, delete-orphan")
+    # movies = db.relationship('Movie', back_populates='director', lazy=True, cascade="all, delete-orphan")
     created_at = db.Column(db.DateTime, server_default=func.current_timestamp())
     updated_at = db.Column(db.DateTime, server_default=func.current_timestamp())

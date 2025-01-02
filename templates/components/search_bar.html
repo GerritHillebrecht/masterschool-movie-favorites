@@ -1,4 +1,4 @@
-<div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+<div id="search_main" class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
 
     <!-- search_bar -->
     <form class="relative pointer-events-auto max-w-md mx-auto w-full rounded-full bg-blue-500/20 shadow backdrop-blur backdrop-saturate p-1">
@@ -14,42 +14,24 @@
             </div>
             <input type="search"
                    id="default-search"
-                   class="rounded-full block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 bg-white/80 focus:ring-neutral-500/40 focus:border-neutral-500/40 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-neutral-500/40 dark:focus:border-neutral-500/40"
+                   class="rounded-full block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 bg-white/80 focus:ring-neutral-500/40 focus:border-neutral-500/40 dark:bg-gray-700/80 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-neutral-500/40 dark:focus:border-neutral-500/40"
                    placeholder="Search Movies..." required/>
             <button type="submit"
-                    class="text-white absolute end-2.5 bottom-2.5 bg-blue-700/80 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-4 mr-1 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    class="text-white absolute end-2.5 bottom-2.5 bg-primary-700/80 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-4 mr-1 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 Search
             </button>
         </div>
 
     </form>
 
-    <div id="search_results" class="max-w-md mx-auto w-full mt-4 bg-blue-500/20 rounded-xl shadow backdrop-blur backdrop-saturate p-1">
-        <div class="shadow p-4 bg-white/80 rounded-lg grid grid-cols-[1fr,2fr] gap-4">
-            <img src="https://m.media-amazon.com/images/I/51E96QSJhXL._AC_SY879_.jpg" alt=""
-                 class="rounded block w-full"/>
-            <div class="content">
-                <h5 class="font-bold text-xl">
-                    Red Notice
-                </h5>
-                <p class="line-clamp-4 text-sm">Nach einem Hinweis durch einen nur als „Läufer“ bekannten Informanten
-                    versucht John Hartley, Profiler beim FBI, zusammen mit der Interpol-Agentin Urvashi Das den
-                    Diebstahl eines der drei Eier der Kleopatra aus der Engelsburg in Rom zu verhindern. Die Eier, ein
-                    Kunstschatz von unermesslichem Wert, waren einst ein Geschenk von Marcus Antonius und sind im Laufe
-                    der Zeit verloren gegangen, bis zwei von ihnen im Jahr 1907 gefunden wurden.
-
-                    Als klar wird, dass das Ei bereits gestohlen wurde und der Täter, Kunstdieb Nolan Booth, sich noch
-                    im Gebäude befindet, nimmt Hartley die Verfolgung auf. Booth gelingt die Flucht. Erst in seinem Haus
-                    auf Bali kann er von Hartley und Das verhaftet werden. Das Ei wird dabei sichergestellt. Jedoch
-                    gelingt es Sarah Black, Hauptkonkurrentin von Booth, getarnt als Mitglied des Einsatzteams, das Ei
-                    zu entwenden und durch eine Fälschung zu ersetzen. Das stellt Hartley zur Rede, weil sie aufgrund
-                    eines hohen Geldeingangs auf Hartleys Konto glaubt, dass er für den erneuten Diebstahl
-                    verantwortlich sei. Da es ihm nicht gelingt, seine Unschuld zu beweisen und in der FBI-Zentrale auch
-                    niemand je von ihm gehört zu haben scheint, wird er verhaftet, in ein russisches Gefängnis gebracht
-                    und dort in die gleiche Zelle wie Booth gesteckt.</p>
-                <button type="button" class="pointer-events-auto mt-2 px-3 py-2 text-xs font-medium text-center text-white bg-blue-700/80 rounded-full hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    Add Movie
-                </button>
+    <div id="search_results" class="max-w-md mx-auto w-full mt-4 grid grid-rows-[0fr] transition-[grid-template-rows] duration-300">
+        <div class="overflow-hidden">
+            <div
+                    class="bg-blue-500/20 rounded-xl shadow backdrop-blur backdrop-saturate p-1">
+                <div class="search-content-container bg-white/80 p-2 rounded-lg">
+                    <p class="text-center text-xs uppercase tracking-widest font-bold text-neutral-700">Type to
+                        search</p>
+                </div>
             </div>
         </div>
     </div>

@@ -1,41 +1,69 @@
-from flask import render_template
-
+from flask import render_template, request, jsonify
+from sqlalchemy.exc import NoResultFound
 from config import is_debug
-from utils.decorators import handle_exceptions
+import requests
 
 
-def register_endpoints(app, datamanger):
+def register_endpoints(app, datamanager):
     """
     Registers all the endpoints used by the frontend to deliver the index.html in all cases.
     :param app: the flask app
+    :param datamanager: Class to access database.
     """
 
-    @app.route("/", methods=["GET"])
+    @app.get("/")
     def get_index():
         """
         :return: the home.html as file
         """
-        return render_template("home.html"), 200
+        users = datamanager.get_all_users()
+        return render_template("home.html", users=users), 200
 
     @app.get("/users")
     def get_users_view():
-        users = datamanger.get_all_users()
+        users = datamanager.get_all_users()
         return render_template("users.html", users=users)
 
+    @app.get("/users/add")
+    def add_user_form():
+        return render_template("add_user.html")
+
+    @app.get("/add-movie")
+    def add_movie_form():
+        try:
+            movie_title = request.args.get("title")
+            response = requests.get(f"http://www.omdbapi.com/?apikey=6999413f&t={movie_title}")
+            response.raise_for_status()
+            movie = response.json()
+        except requests.exceptions.RequestException as e:
+            print(f"Error accessing API: {e}")
+            return render_template("add_movie.html", error=e)
+        except ValueError as e:
+            print(f"Error accessing movie title: {e}")
+            return render_template("add_movie.html", not_found=True)
+
+        users = datamanager.get_all_users()
+
+        return render_template("add_movie.html", movie=movie, **movie, users=users)
+
     @app.get("/users/<int:user_id>")
-    @handle_exceptions
     def get_user_movies(user_id: int):
         try:
-            movies = datamanger.get_user_movies(user_id)
-            user = datamanger.get_user(user_id)
+            movies = datamanager.get_user_movies(user_id)
+            user = datamanager.get_user(user_id)
 
             return render_template("user_movies.html", movies=movies, user=user)
-        except Exception:
+        except NoResultFound as e:
             return render_template("user_movies.html", movies=[], user={})
 
     @app.get("/search")
-    def get_ai_recommendation():
+    def search_movies():
         return render_template("search.html")
+
+    @app.get("/movie/<int:movie_id>")
+    def get_movie_by_id(movie_id: int):
+        movie = datamanager.get_movie_by_id(movie_id)
+        return render_template("movie_detail.html", movie=movie)
 
     @app.errorhandler(404)
     def page_not_found(e):

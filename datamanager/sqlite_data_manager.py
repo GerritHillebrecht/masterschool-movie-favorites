@@ -28,13 +28,16 @@ class SQLiteDataManager(DataMangerInterface):
         :param user_id: The id of the user to fetch the movies for.
         :return: The movies of this user.
         """
-        return db.session.query(Movie).join(Director).filter(Movie.user_id == user_id).all()
+        return (db.session.query(Movie)
+                # .join(Director)
+                .filter(Movie.user_id == user_id)
+                .all())
 
     def get_user(self, user_id):
         """
-
-        :param user_id:
-        :return:
+        Returns a user based on a given user id.
+        :param user_id: User ID as int.
+        :return: Returns the retrieved user if found.
         """
         return db.session.query(User).filter(User.id == user_id).one()
 
@@ -54,12 +57,22 @@ class SQLiteDataManager(DataMangerInterface):
         """
         return self._add_instance(movie, Movie)
 
+    def get_movie_by_id(self, movie_id: int):
+        """
+        Fetches a movie based on given movie id.
+        :param movie_id: The movie id to fetch the movie for.
+        :return: The movie to be fetched.
+        """
+        return db.session.query(Movie).filter(Movie.id == movie_id).one()
+
     def get_all_directors(self) -> list[Director]:
         """
         Fetches all directors and returns them.
         :return: list[dict]
         """
-        return db.session.query(Director).join(Movie).all()
+        return (db.session.query(Director)
+                # .join(Movie)
+                .all())
 
     def add_director(self, director: Director) -> Director:
         """
@@ -70,6 +83,13 @@ class SQLiteDataManager(DataMangerInterface):
         return self._add_instance(director, Director)
 
     def update_movie(self, updated_movie_data, user_id: int, movie_id: int) -> Movie:
+        """
+        Updates a movie in the database based on given movie_id-
+        :param updated_movie_data:
+        :param user_id:
+        :param movie_id:
+        :return:
+        """
         db_movie = db.session.query(Movie).filter(Movie.id == movie_id).one()
 
         if not db_movie:
@@ -84,6 +104,11 @@ class SQLiteDataManager(DataMangerInterface):
         return db_movie
 
     def delete_movie(self, movie_id):
+        """
+        Deletes a movie based on a given movie_id.
+        :param movie_id: The ID of the movie.
+        :return: Returns the deleted movie.
+        """
         movie = db.session.query(Movie).filter(Movie.id == movie_id).one()
 
         if not movie:
@@ -96,6 +121,12 @@ class SQLiteDataManager(DataMangerInterface):
 
     @staticmethod
     def _add_instance(item, item_type):
+        """
+        Validates an item before saving it to the database.
+        :param item: The item to add to the database.
+        :param item_type: The Database type the item type should match.
+        :return: The added item.
+        """
         # Validity check
         if not isinstance(item, item_type):
             raise ValueError(f"{item} is not of type {item_type}")

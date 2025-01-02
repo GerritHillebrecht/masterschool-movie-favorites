@@ -1,0 +1,58 @@
+{% extends "_base.html" %}
+
+{% block title %}
+Add user
+{% endblock %}
+
+{% block js_imports %}
+<script src="{{url_for('static',filename='js/add_user.js')}}" type="module" defer></script>
+{% endblock %}
+
+{% block content %}
+<form name="add_user_form" class="content-container py-6">
+    <h1 class="text-3xl text-neutral-800 font-bold">Welcome to Filmster</h1>
+    <div class="grid grid-cols-[2fr,1fr] gap-x-4">
+        <div class="grid grid-cols-2 gap-x-4 items-center">
+            <div>
+                <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    Your first name
+                </label>
+                <input min="2" type="text" name="firstname" id="first_name"
+                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                       placeholder="I am called..." required/>
+            </div>
+            <div>
+                <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    Your last name
+                </label>
+                <input min="2" name="lastname" type="text" id="last_name"
+                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                       placeholder="My family name is..." required/>
+            </div>
+        </div>
+        <div class="border rounded p-4">
+            <p class="text-sm">Join us and save your favorite films, get personalized recommendations, and share your
+                movie lists with
+                friends. Sign up now and start building your movie collection!
+
+                Does that work for you? 😊🚀
+
+                Is there anything else I can assist you with?
+
+            </p>
+
+        </div>
+    </div>
+    <button type="submit"
+            class="flex items-center gap-x-1 text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
+        <svg class="w-6 h-6 mr-1 text-gray-100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+             width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+            <path fill-rule="evenodd"
+                  d="M9 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4H7Zm8-1a1 1 0 0 1 1-1h1v-1a1 1 0 1 1 2 0v1h1a1 1 0 1 1 0 2h-1v1a1 1 0 1 1-2 0v-1h-1a1 1 0 0 1-1-1Z"
+                  clip-rule="evenodd"/>
+        </svg>
+
+        Join Filmster
+    </button>
+</form>
+{% endblock %}

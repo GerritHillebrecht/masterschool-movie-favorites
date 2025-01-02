@@ -1,9 +1,25 @@
-<a href="/users/{{user.id}}"
-   class="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+<a
+        href="/users/{{user.id}}"
+        data-user='{{user.to_dict() | tojson}}'
+        class="userCard block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+>
 
-    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-        {{user.firstname}} {{user.lastname}}
-    </h5>
+    <div class="grid grid-cols-[auto,min-content] items-center gap-x-2">
+
+        <h5 class="line-clamp-1 mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            {{user.firstname}} {{user.lastname}}
+        </h5>
+        <button type="button"
+                class="group text-primary-700 border border-primary-700 hover:bg-primary-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center dark:border-primary-500 dark:text-primary-500 dark:hover:text-white dark:focus:ring-primary-800 dark:hover:bg-primary-500">
+            <svg class="w-4 h-4 group-hover:text-white text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                 width="16" height="16" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
+            </svg>
+
+            <span class="sr-only">Icon description</span>
+        </button>
+    </div>
     <p class="font-normal text-gray-700 mb-2 dark:text-gray-400">
         Here are the biggest enterprise technology acquisitions of
         2021 so far, in reverse chronological order.

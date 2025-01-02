@@ -1,4 +1,8 @@
 {
+  "type": "module",
+  "scripts": {
+    "watch-tw": "npx tailwindcss -i ./static/src/input.css -o ./static/css/output.css --watch"
+  },
   "devDependencies": {
     "tailwindcss": "^3.4.15"
   },

@@ -1,7 +1,13 @@
+"""
+The app at times falls short in usability to make room for aesthetic choices.
+E.g. the autocomplete-search should be in the navbar, but the robot really
+does look cool in combination with transparent elements.
+"""
+
 import logging
 from os import path
 
-from flask import Flask
+from flask import Flask, request
 from flask_cors import CORS
 from pbu import Logger
 
@@ -25,6 +31,11 @@ def create_app():
     CORS(flask_app, resources={r"/api/*": {"origins": "*"}})
 
     data_manager = SQLiteDataManager(flask_app)
+
+    @flask_app.context_processor
+    def inject_current_path():
+        print(request.path)
+        return {'current_path': request.path}
 
     static_routes.register_endpoints(flask_app, data_manager)
     api_routes.register_endpoints(flask_app, api_path, data_manager)

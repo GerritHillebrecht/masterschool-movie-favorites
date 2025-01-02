@@ -3,6 +3,7 @@
 <head>
     <title>Filmster - {% block title %} {% endblock %}</title>
     <meta charset="UTF-8">
+    <meta name="view-transition" content="same-origin">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{{ url_for('static', filename='images/logo.png') }}" type="image/x-icon">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -13,17 +14,46 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Moirai+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&family=DM+Serif+Text:ital@0;1&display=swap"
+          rel="stylesheet">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     {% block css_imports %} {% endblock %}
 </head>
-<body>
+<body class="dark:bg-neutral-800 dark:text-neutral-200">
 {% include "components/navbar.html" %}
 
 {% block hero %} {% endblock %}
 {% block content %} {% endblock %}
 
+<!--<div id="toast-parent-container" class="fixed bottom-4 right-4">-->
+<!--    &lt;!&ndash; {% include "components/toast.html" %} &ndash;&gt;-->
+<!--</div>-->
+
 {% include "components/footer.html" %}
-<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
 {% block js_imports %} {% endblock %}
+<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+<script src="{{url_for('static',filename='js/theme.js')}}"></script>
+<script>
+    const user = localStorage.getItem("selectedUser")
+
+    if (user) {
+        const userBlock = document.getElementById("user-block")
+        const userData = JSON.parse(user)
+        userBlock.innerText = `${userData.firstname} ${userData.lastname}`
+
+        const navbar_element_authorized = document.querySelector(".authorized")
+        navbar_element_authorized.classList.remove("hidden")
+
+    } else {
+        const navbar_element_not_authorized = document.querySelector(".not-authorized")
+        navbar_element_not_authorized.classList.remove("hidden")
+    }
+
+    const switchUserButton = document.querySelector(".user-auth-button")
+    switchUserButton.addEventListener("click", () => {
+        localStorage.removeItem("selectedUser")
+        window.location.assign("/")
+    })
+</script>
 </body>
 </html>

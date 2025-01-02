@@ -2,6 +2,20 @@
     --max-content-width: 1280px;
 }
 
+@view-transition {
+  navigation: auto;
+}
+
+::selection {
+  color: white;
+  background: red;
+}
+
+.content-container {
+    @apply max-w-7xl mx-auto px-4 border
+}
+
+
 .search_bar {
     animation: show_search 0.75s both ease-out;
     animation-delay: 4.5s;
@@ -12,9 +26,14 @@
     margin-inline: auto;
 }
 
-.logo-text {
-    font-family: "Moirai One", system-ui;
+.logo-text, h1, h2, h3, h4, h5, h6 {
+/*    font-family: "Moirai One", system-ui;
     font-weight: 400;
+    font-style: normal;
+*/
+
+    font-family: "DM Serif Text", serif;
+    font-weight: 900;
     font-style: normal;
 }
 
@@ -22,6 +41,9 @@
     animation: flicker 5s both ease-in alternate infinite;
 }
 
+.show-searchbar {
+    grid-template-rows: 1fr;
+}
 
 @keyframes flicker {
     from {

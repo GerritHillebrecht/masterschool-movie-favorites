@@ -1,0 +1,38 @@
+{% extends "_base.html" %}
+
+{% block content %}
+<div class="mx-auto max-w-6xl grid grid-cols-[1fr,2fr] gap-x-6 relative py-6">
+    <div>
+        <span class="text-xs italic text-center block">Press back and forward to see view-transition-api in action</span>
+        <img style="view-transition-name: movie-image-{{movie.id}}" class="w-full block aspect-[11/16] object-center object-cover" src="{{movie.poster}}"
+             alt="{{movie.name}}"/>
+    </div>
+    <div>
+        <div class="sticky top-20">
+            <div class="flex items-center gap-1 mb-2">
+                {% for genre in movie.genre.split(", ") %}
+                <span class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">
+                {{genre}}
+            </span>
+                {% endfor %}
+            </div>
+            <h1 class="text-4xl font-bold mb-2">{{movie.name}}</h1>
+            <p>{{movie.actors}}</p>
+            <p class="text-xs italic">Written by {{movie.writers}}</p>
+            <blockquote class="text-xl mt-4 italic font-semibold text-gray-900 dark:text-white">
+                <p class="">{{movie.awards}}</p>
+            </blockquote>
+            <p class="text-sm">Box office: {{movie.boxOffice}}</p>
+            <p class="mt-4">{{movie.plot}}</p>
+            <button type="button" id="deleteButton" data-movie-id="{{movie.id}}"
+                    class="mt-4 px-3 py-2 text-sm font-medium text-center text-white bg-primary-700 rounded-lg hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                Remove movie
+            </button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js_imports %}
+<script src="{{url_for('static',filename='js/movie_details.js')}}"></script>
+{% endblock %}

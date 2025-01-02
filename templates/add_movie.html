@@ -1,0 +1,116 @@
+{% extends "_base.html" %}
+
+{% block title %}
+{{Title}}
+{% endblock %}
+
+{% block js_imports %}
+<script src="{{url_for('static',filename='js/add_movie.js')}}" type="module" defer></script>
+{% endblock %}
+
+{% block content %}
+
+<div class="grid grid-cols-[1fr,2fr] py-10 max-w-7xl mx-auto px-4 gap-8">
+    <div>
+        <figure class="relative sticky top-16">
+            <picture>
+                <img src="{{Poster}}" class="relative w-full object-cover object-center block"
+                     alt="Poster of {{Title}}">
+            </picture>
+        </figure>
+    </div>
+    <div>
+        <h1 class="text-4xl mb-6">Keep your movie pick safe</h1>
+        <form class="max-w-5xl mx-auto w-full sticky top-20" name="movie_form">
+            <div class="grid gap-6 mb-6 md:grid-cols-2">
+                <div>
+                    <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        Movie title
+                    </label>
+                    <input
+                            value="{{Title}}"
+                            name="title"
+                            type="text"
+                            id="title"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            placeholder="John"
+                            required
+                    />
+                </div>
+                <div>
+                    <label for="actors" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        Movie actors
+                    </label>
+                    <input
+                            value="{{Actors}}"
+                            name="actors"
+                            type="text"
+                            id="actors"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            placeholder="Ryan Reynolds"
+                            required
+                    />
+                </div>
+                <div>
+                    <label for="poster" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        Movie poster
+                    </label>
+                    <input
+                            value="{{Poster}}"
+                            name="poster"
+                            type="text"
+                            id="poster"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            placeholder="John"
+                            required
+                    />
+                </div>
+                {% for rating in Ratings %}
+                {% if rating.Source == "Internet Movie Database" %}
+                {% set value_parts = rating.Value.split('/') %}
+                <div>
+                    <label for="rating" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        Movie rating
+                    </label>
+
+                    <input
+                            value="{{value_parts[0]}}"
+                            name="rating"
+                            type="number"
+                            id="rating"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            placeholder="8"
+                            required
+                    />
+                </div>
+                {% endif %}
+                {% endfor %}
+
+            </div>
+            <label for="plot" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                The movie's plot
+            </label>
+            <textarea
+                    id="plot"
+                    name="plot"
+                    rows="4"
+                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                    placeholder="The plot..."
+            >{{Plot}}</textarea>
+            <button
+                    id="add_movie_btn"
+                    type="submit"
+                    class="mt-4 text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
+            >
+                Add to my Movies
+            </button>
+        </form>
+        <pre id="movie_data" class="hidden">
+            <code>
+                {{movie|tojson}}
+            </code>
+        </pre>
+    </div>
+</div>
+
+{% endblock %}
