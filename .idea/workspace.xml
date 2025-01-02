@@ -4,48 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee16fce7-c09e-415e-b07c-8bcbaf2be080" name="Changes" comment="[feat] updated unversioned files">
-      <change afterPath="$PROJECT_DIR$/static/images/Redillium%20-%2028.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/bg-grainient-2.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/bg-grainient-3.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/bg-grainient-resized.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/bg-grainient.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/add_movie.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/add_user.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/movie_details.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/settings.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/theme.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/toast.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/swagger.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/add_movie.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/add_user.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/components/dark-mode-selector.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/components/toast.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/movie_detail.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/swagger_ui_with_navbar.html" afterDir="false" />
+    <list default="true" id="ee16fce7-c09e-415e-b07c-8bcbaf2be080" name="Changes" comment="[chore] added local database to provide basic usage-data">
+      <change afterPath="$PROJECT_DIR$/static/js/api.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/api_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/api_routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/static_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/static_routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datamanager/sqlite_data_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/datamanager/sqlite_data_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schemas/director_schema.py" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/director_schema.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schemas/movie_schema.py" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/movie_schema.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/global.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/output.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/output.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/omdb.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/omdb.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/_base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/_base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/components/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/components/footer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/components/movie_card.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/components/movie_card.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/components/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/components/navbar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/components/navbar_menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/components/navbar_menu.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/components/search_bar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/components/search_bar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/components/user-card.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/components/user-card.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/search.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user_movies.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user_movies.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/users.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/movie_library.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/database/movie_library.sqlite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/add_movie.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/add_movie.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/add_user.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/add_user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/movie_details.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/movie_details.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,7 +160,31 @@
       <option name="project" value="LOCAL" />
       <updated>1732364702850</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="[feat] backup milestone delete movie">
+      <option name="closed" value="true" />
+      <created>1735843722748</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1735843722748</updated>
+    </task>
+    <task id="LOCAL-00009" summary="[chore] updated app port">
+      <option name="closed" value="true" />
+      <created>1735844256203</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1735844256203</updated>
+    </task>
+    <task id="LOCAL-00010" summary="[chore] added local database to provide basic usage-data">
+      <option name="closed" value="true" />
+      <created>1735844397392</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1735844397392</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -206,6 +195,9 @@
     <MESSAGE value="[feat] added prelimiary README.md" />
     <MESSAGE value="[feat] updated prelimiary README.md" />
     <MESSAGE value="[feat] updated unversioned files" />
-    <option name="LAST_COMMIT_MESSAGE" value="[feat] updated unversioned files" />
+    <MESSAGE value="[feat] backup milestone delete movie" />
+    <MESSAGE value="[chore] updated app port" />
+    <MESSAGE value="[chore] added local database to provide basic usage-data" />
+    <option name="LAST_COMMIT_MESSAGE" value="[chore] added local database to provide basic usage-data" />
   </component>
 </project>

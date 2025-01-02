@@ -1,3 +1,5 @@
+import { add_movie_to_database } from "./api.js"
+
 const add_movie_btn = document.getElementById("add_movie_btn")
 const movie_data_ref = document.getElementById("movie_data")
 const movie_data = JSON.parse(movie_data_ref.querySelector("code").innerHTML)
@@ -31,20 +33,3 @@ movie_form.addEventListener("submit", async (event) => {
     }
 })
 
-async function add_movie_to_database(movie, userId) {
-    const res = await fetch(`http://localhost:5002/api/v1/users/${userId}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(movie)
-    })
-
-    if (!res.ok) {
-        throw new Error("Everything broke, take your most important belongings and run!")
-    }
-
-    try {
-        return await res.json()
-    } catch (error) {
-        console.error("Everything is fucked", error)
-    }
-}
