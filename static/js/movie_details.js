@@ -9,7 +9,10 @@ async function handleDeleteClick(movieId) {
         return
     }
 
-    await deleteMovie(movieId)
+    console.log("deleting")
+    const deleted_movie = await deleteMovie(movieId)
+    console.log("deletion complete")
+    console.log(deleted_movie)
 
     return window.location.assign("/")
 }
