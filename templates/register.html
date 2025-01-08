@@ -1,0 +1,137 @@
+{% extends "_base_auth.html" %}
+
+{% block title %}
+Register
+{% endblock %}
+
+{% block content %}
+<div class="h-screen w-screen flex items-center justify-center relative">
+
+    <img src="{{url_for('static',filename='images/bg-grainient-3.jpeg')}}"
+         class="absolute inset-0 block w-full h-full object-center object-cover" alt="background-image"/>
+    <div class="p-2 backdrop-blur-sm backdrop-saturate-150 max-w-4xl w-full rounded-2xl bg-white/40">
+        <form method="post" class="p-6 shadow-xl rounded-xl bg-white border relative z-10">
+            {{ form.hidden_tag() }}
+            <h1 class="text-3xl font-bold mb-4">Welcome to Filmster</h1>
+            <div class="">
+                <p class="text-sm">
+                    Join us and save your favorite films, get personalized recommendations, and share your movie lists
+                    with friends. Sign up now and start building your movie collection!
+                </p>
+                <div class="grid grid-cols-2 gap-4 items-center mt-4">
+                    <div>
+                    <span class="block mb-2 text-sm font-medium">
+                        {{ form.username.label }}
+                    </span>
+                        {{ form.username(size=32, type_="text", autocomplete_="username", id_="username",
+                        placeholder_="Fancy username...", class_="bg-gray-50 border border-gray-300 text-gray-900
+                        text-sm
+                        rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700
+                        dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500
+                        dark:focus:border-primary-500") }}
+                    </div>
+                    <div>
+                    <span class="block mb-2 text-sm font-medium">
+                        {{ form.email.label }}
+                    </span>
+                        {{ form.email(size=32, autocomplete="email", id_="email", placeholder_="Your E-Mail-address",
+                        class_="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                        focus:ring-primary-500
+                        focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600
+                        dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500
+                        dark:focus:border-primary-500") }}
+                    </div>
+                    <div>
+                    <span class="block mb-2 text-sm font-medium">
+                        {{ form.firstname.label }}
+                    </span>
+                        {{
+                        form.firstname(
+                        size=32,
+                        autocomplete="given-name",
+                        id_="firstname",
+                        placeholder_="I am called...",
+                        class_="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                        focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700
+                        dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500
+                        dark:focus:border-primary-500"
+                        )
+                        }}
+                    </div>
+                    <div>
+                    <span class="block mb-2 text-sm font-medium">
+                        {{ form.lastname.label }}
+                    </span>
+                        {{
+                        form.lastname(
+                        size=32,
+                        autocomplete="family-name",
+                        id_="lastname",
+                        placeholder_="My family-name",
+                        class_="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                        focus:ring-primary-500
+                        focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600
+                        dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500
+                        dark:focus:border-primary-500"
+                        )
+                        }}
+                    </div>
+                    <div>
+                    <span class="block mb-2 text-sm font-medium">
+                        {{ form.password.label }}
+                    </span>
+                        {{
+                        form.password(
+                        size=32,
+                        autocomplete="new-password",
+                        id_="password",
+                        type_="password",
+                        placeholder_="Choose a password",
+                        class_="bg-gray-50 border border-gray-300 text-gray-900
+                        text-sm
+                        rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700
+                        dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500
+                        dark:focus:border-primary-500"
+                        )
+                        }}
+                    </div>
+                    <div>
+                    <span class="block mb-2 text-sm font-medium">
+                        {{ form.password2.label }}
+                    </span>
+                        {{
+                        form.password2(
+                        size=32,
+                        id_="password2",
+                        type_="password",
+                        placeholder_="Repeat the password",
+                        class_="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                        focus:ring-primary-500
+                        focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600
+                        dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500
+                        dark:focus:border-primary-500"
+                        )
+                        }}
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center gap-x-4 mt-6">
+                <button type="submit"
+                        class="flex items-center gap-x-1 text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
+                    <svg class="w-6 h-6 mr-1 text-gray-100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                         width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd"
+                              d="M9 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4H7Zm8-1a1 1 0 0 1 1-1h1v-1a1 1 0 1 1 2 0v1h1a1 1 0 1 1 0 2h-1v1a1 1 0 1 1-2 0v-1h-1a1 1 0 0 1-1-1Z"
+                              clip-rule="evenodd"/>
+                    </svg>
+
+                    Join Filmster
+                </button>
+                <a href="/login">
+                    Already have an Account?
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

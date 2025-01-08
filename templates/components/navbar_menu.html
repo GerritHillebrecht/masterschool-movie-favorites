@@ -5,12 +5,9 @@
                 <li>
                     <a href="/"
                        class="{% if current_path == '/' %}text-primary-600{% else %}text-gray-500{% endif %} block py-2 px-3 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-primary-600 md:p-0 md:dark:hover:text-primary-500 dark:hover:bg-gray-700 dark:hover:text-primary-500 md:dark:hover:bg-transparent dark:border-gray-700"
-                       aria-current="page">Home</a>
-                </li>
-                <li>
-                    <a href="/api/v1/docs"
-                       class="{% if current_path == '/api/docs' %}text-primary-600{% else %}text-gray-500{% endif %} block py-2 px-3 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-primary-600 md:p-0 md:dark:hover:text-primary-500 dark:hover:bg-gray-700 dark:hover:text-primary-500 md:dark:hover:bg-transparent dark:border-gray-700"
-                       aria-current="page">Docs</a>
+                       aria-current="page">
+                        Movies
+                    </a>
                 </li>
 
                 <li>
@@ -19,7 +16,19 @@
                         Search
                     </a>
                 </li>
-
+                <li>
+                    <a href="/calendar"
+                       class="{% if current_path == '/calendar' %}text-primary-600{% else %}text-gray-500{% endif %} block py-2 px-3 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-primary-600 md:p-0 md:dark:hover:text-primary-500 dark:hover:bg-gray-700 dark:hover:text-primary-500 md:dark:hover:bg-transparent dark:border-gray-700">
+                        Calendar
+                    </a>
+                </li>
+                <li>
+                    <a href="/docs"
+                       class="{% if current_path == '/api/docs' %}text-primary-600{% else %}text-gray-500{% endif %} block py-2 px-3 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-primary-600 md:p-0 md:dark:hover:text-primary-500 dark:hover:bg-gray-700 dark:hover:text-primary-500 md:dark:hover:bg-transparent dark:border-gray-700"
+                       aria-current="page">
+                        Docs
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

@@ -27,4 +27,5 @@ def filter_valid_fields(
     return {
         key: value
         for key, value in data.items()
-        if key in model_columns and key not in exclude_fields}
+        if key in model_columns and key not in exclude_fields
+    }

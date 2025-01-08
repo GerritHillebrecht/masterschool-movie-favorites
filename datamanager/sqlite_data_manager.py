@@ -1,3 +1,5 @@
+from sqlalchemy import desc
+
 from database.extensions import db
 from schemas import User, Movie, Director
 from .data_manager_interface import DataMangerInterface
@@ -29,9 +31,13 @@ class SQLiteDataManager(DataMangerInterface):
         :return: The movies of this user.
         """
         return (db.session.query(Movie)
-                # .join(Director)
                 .filter(Movie.user_id == user_id)
-                .all())
+                .order_by(desc(Movie.id))
+                .all()
+                )
+
+    def get_all_movies(self):
+        return db.session.query(Movie).order_by(desc(Movie.id)).all()
 
     def get_user(self, user_id):
         """
@@ -127,9 +133,10 @@ class SQLiteDataManager(DataMangerInterface):
         :param item_type: The Database type the item type should match.
         :return: The added item.
         """
+        print(item)
         # Validity check
-        if not isinstance(item, item_type):
-            raise ValueError(f"{item} is not of type {item_type}")
+        # if not isinstance(item, item_type):
+        #     raise ValueError(f"{item} is not of type {item_type}")
 
         # Add item to db
         db.session.add(item)

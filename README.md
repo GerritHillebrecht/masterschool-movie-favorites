@@ -61,7 +61,7 @@ The Masterschool Movie Favorites is a Flask-based web application that allows us
 
 ```sh
 └── masterschool-movie-favorites/
-    ├── api
+    ├── routes
     │   ├── __init__.py
     │   ├── api_routes.py
     │   └── static_routes.py

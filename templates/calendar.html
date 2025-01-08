@@ -1,0 +1,23 @@
+{% extends "_base.html" %}
+{% block title %} Home {% endblock %}
+{% block js_imports %}
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+<script defer>
+    const calendar_events_url = `${window.location.origin}/api/v1/calendar`
+    console.log(calendar_events_url)
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth',
+      events: calendar_events_url,
+      locale: "de",
+    });
+    calendar.render();
+</script>
+{% endblock %}
+{% block content %}
+<section class="">
+    <div class="p-6">
+        <div id="calendar"></div>
+    </div>
+</section>
+{% endblock %}

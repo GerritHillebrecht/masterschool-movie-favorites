@@ -3,13 +3,6 @@ import os
 from dotenv import load_dotenv
 
 DEFAULTS = {
-    # "MYSQL_HOST": "localhost",
-    # "MYSQL_USERNAME": "myuser",
-    # "MYSQL_PASSWORD": "mypassword",
-    # "MYSQL_DATABASE": "mydatabase",
-    # "MONGO_URL": "mongodb://localhost:27017",
-    # "MONGO_DB": "mydatabase",
-
     "LOG_FOLDER": "_logs",
     "IS_DEBUG": False,
 }
@@ -24,12 +17,7 @@ def load_config():
     config = {
         "API_PATH": os.getenv("API_PATH"),
         "API_VERSION": os.getenv("API_VERSION"),
-        # "MYSQL_HOST": os.getenv("MYSQL_HOST", "localhost"),
-        # "MYSQL_USERNAME": os.getenv("MYSQL_USERNAME"),
-        # "MYSQL_PASSWORD": os.getenv("MYSQL_PASSWORD"),
-        # "MYSQL_DATABASE": os.getenv("MYSQL_DATABASE"),
-        # "MONGO_URL": os.getenv("MONGO_URL"),
-        # "MONGO_DB": os.getenv("MONGO_DB"),
+        "SECRET_KEY": os.environ.get('SECRET_KEY') or 'MY_GOD_THIS_IS_SO_SECRET_HOW_WILL_THEY_KNOW',
         "SQLITE_DATABASE_FILE": os.environ.get("SQLITE_DATABASE_FILE"),
 
         "LOG_FOLDER": os.getenv("LOG_FOLDER"),
@@ -51,16 +39,6 @@ def load_config():
 def get_log_folder():
     config = load_config()
     return config["LOG_FOLDER"]
-
-
-def get_mysql_config():
-    config = load_config()
-    return config["MYSQL_HOST"], config["MYSQL_DATABASE"], config["MYSQL_USERNAME"], config["MYSQL_PASSWORD"]
-
-
-def get_mongodb_config():
-    config = load_config()
-    return config["MONGO_URL"], config["MONGO_DB"]
 
 
 def is_debug():

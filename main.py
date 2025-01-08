@@ -3,42 +3,58 @@ The app at times falls short in usability to make room for aesthetic choices.
 E.g. the autocomplete-search should be in the navbar, but the robot really
 does look cool in combination with transparent elements.
 """
-
 import logging
 from os import path
 
 from flask import Flask, request
 from flask_cors import CORS
+from flask_login import LoginManager, current_user
 from pbu import Logger
 
-from api import static_routes, api_routes
 from config import load_config, get_log_folder
 from datamanager import SQLiteDataManager
+from routes import static_routes, api_routes, auth_routes
+from schemas import User
 
 logging.basicConfig()
 logging.getLogger('sqlalchemy.engine')
-config = load_config()
 
 
 def create_app():
+    config = load_config()
+
     basedir = path.abspath(path.dirname(__file__))
     filedir = f'sqlite:///{path.join(basedir, "database", config.get("SQLITE_DATABASE_FILE"))}'
-    api_path = f'/{config.get("API_PATH")}/{config.get("API_VERSION")}'
 
     flask_app = Flask(__name__)
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = filedir
+    flask_app.config["SECRET_KEY"] = config.get("SECRET_KEY")
 
-    CORS(flask_app, resources={r"/api/*": {"origins": "*"}})
-
-    data_manager = SQLiteDataManager(flask_app)
+    CORS(flask_app, resources={r"/routes/*": {"origins": "*"}})
 
     @flask_app.context_processor
     def inject_current_path():
-        print(request.path)
         return {'current_path': request.path}
 
-    static_routes.register_endpoints(flask_app, data_manager)
-    api_routes.register_endpoints(flask_app, api_path, data_manager)
+    @flask_app.context_processor
+    def inject_current_user():
+        return {"current_user": current_user}
+
+    flask_app.register_blueprint(static_routes)
+    flask_app.register_blueprint(api_routes)
+    flask_app.register_blueprint(auth_routes)
+
+    login_manager = LoginManager()
+    login_manager.init_app(flask_app)
+    login_manager.login_view = "auth.get_login"
+    flask_app.login_manager = login_manager
+
+    @login_manager.user_loader
+    def load_user(user_id):
+        return User.query.get(int(user_id))
+
+    data_manager = SQLiteDataManager(flask_app)
+    flask_app.data_manager = data_manager
 
     return flask_app
 

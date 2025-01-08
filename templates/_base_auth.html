@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
     <title>Filmster - {% block title %} {% endblock %}</title>
     <meta charset="UTF-8">
@@ -19,32 +19,13 @@
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     {% block css_imports %} {% endblock %}
 </head>
-<body class="dark:bg-neutral-900 dark:text-neutral-200">
-{% include "components/navbar.html" %}
-
+<body class="dark:bg-neutral-800 dark:text-neutral-200">
 {% block hero %} {% endblock %}
 {% block content %} {% endblock %}
 
-{% include "components/footer.html" %}
 {% block js_imports %} {% endblock %}
-<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
 <script src="{{url_for('static',filename='js/theme.js')}}"></script>
-<script type="speculationrules">
-    {
-        "prerender": [
-          {
-            "where": {
-              "and": [
-                { "href_matches": "/movie/*" },
-                { "not": { "selector_matches": ".no-prerender" } },
-                { "not": { "selector_matches": "[rel~=nofollow]" } }
-              ]
-            },
-            "eagerness": "moderate"
-          }
-        ]
-    }
-</script>
 
 </body>
 </html>

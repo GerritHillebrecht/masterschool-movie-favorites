@@ -65,7 +65,7 @@ search_main.addEventListener("focusout", () => {
 function create_search_result(movie) {
   const movie_container = document.createElement("div");
   movie_container.className =
-    "grid grid-cols-[1fr,2fr] gap-4";
+    "grid grid-cols-[1fr,2fr] gap-4 text-neutral-800";
 
   const movie_poster = document.createElement("img");
   movie_poster.className = "rounded block w-full";

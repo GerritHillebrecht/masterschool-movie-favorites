@@ -1,0 +1,47 @@
+{% extends "_base_auth.html" %}
+{% block content %}
+<div class="w-screen h-screen flex items-center justify-center bg-neutral-100 relative">
+    <img src="{{url_for('static',filename='images/bg-grainient.jpg')}}" alt="background"
+         class="absolute block inset-0 w-full h-full object-cover object-center">
+    <div class="p-2 backdrop-blur-sm backdrop-saturate-150 max-w-xl w-full rounded-2xl bg-white/40">
+        <form method="post"
+              class="p-6 shadow-xl rounded-xl bg-white border relative z-10">
+            <h1 class="mb-2 text-3xl font-bold">Welcome to <span class="text-primary-700">Filmster</span></h1>
+            {{ form.hidden_tag() }}
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div class="p-4 mt-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                 role="alert">
+                <span class="font-medium">Invalid credentials</span> {{messages[0]}}
+            </div>
+            {% endif %}
+            {% endwith %}
+            <div class="mt-4">
+                <span class="block mb-2 text-sm font-medium">{{ form.email.label }}</span>
+                {{ form.email(size=32, autocomplete="email", placeholder="Your E-Mail-Adress", class="bg-gray-50 border
+                border-gray-300
+                text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5
+                dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                dark:focus:ring-primary-500
+                dark:focus:border-primary-500") }}
+            </div>
+            <div class="mt-4">
+                <span class="block mb-2 text-sm font-medium">{{ form.password.label }}</span>
+                {{ form.password(size=32, autocomlete="current-password", placeholder="Your password", class="bg-gray-50
+                border border-gray-300
+                text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5
+                dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                dark:focus:ring-primary-500
+                dark:focus:border-primary-500") }}
+            </div>
+            <div class="flex mt-4 items-center gap-x-2">
+                <button type="submit"
+                        class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
+                    Sign in
+                </button>
+                <a href="/register">Create Account</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

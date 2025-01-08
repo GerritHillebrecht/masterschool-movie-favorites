@@ -1,8 +1,8 @@
 {% extends "_base.html" %}
 
 {% block css_imports %}
-<link rel="stylesheet" href="/api/docs/swagger-ui.css">
-<link rel="stylesheet" href="/api/docs/index.css">
+<link rel="stylesheet" href="/api/v1/docs/swagger-ui.css">
+<link rel="stylesheet" href="/api/v1/docs/index.css">
 {% endblock %}
 
 {% block content %}
@@ -12,8 +12,8 @@
 </div>
 {% endblock %}
 {% block js_imports %}
-<script src="/api/docs/swagger-ui-bundle.js"></script>
-<script src="/api/docs/swagger-ui-standalone-preset.js"></script>
+<script src="/api/v1/docs/swagger-ui-bundle.js"></script>
+<script src="/api/v1/docs/swagger-ui-standalone-preset.js"></script>
 <script>
     var config = {
       presets: [
@@ -24,7 +24,7 @@
         SwaggerUIBundle.plugins.DownloadUrl
       ]
     };
-    var user_config = {"dom_id": "#swagger-ui", "url": "/static/swagger.json", "layout": "StandaloneLayout", "deepLinking": true, "oauth2RedirectUrl": "http://localhost:5002/api/docs/oauth2-redirect.html"};  // User config options provided from Python code
+    var user_config = {"dom_id": "#swagger-ui", "url": "/static/swagger.json", "layout": "StandaloneLayout", "deepLinking": true, "oauth2RedirectUrl": "http://localhost:5002/api/v1/docs/oauth2-redirect.html"};  // User config options provided from Python code
     for (var attrname in user_config) { config[attrname] = user_config[attrname]; }
 
     window.onload = function () {

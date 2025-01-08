@@ -6,7 +6,8 @@
         {% include "components/navbar_menu.html" %}
         <div class="flex items-center md:order-2 space-x-1 md:space-x-2 rtl:space-x-reverse">
             {% include "components/dark-mode-selector.html" %}
-            <div class="not-authorized hidden flex items-center space-x-1 md:space-x-2">
+            {% if not current_user.is_authenticated %}
+            <div class="not-authorized flex items-center space-x-1 md:space-x-2">
                 <a href="/"
                    class="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">
                     Login
@@ -16,15 +17,44 @@
                     Sign up
                 </a>
             </div>
-            <div class="hidden authorized flex items-center gap-2">
+            {% endif %}
+            {% if current_user.is_authenticated %}
+            <div class="authorized cursor-pointer flex items-center gap-2" id="dropdownDividerButton"
+                 data-dropdown-toggle="dropdownDivider">
                 <div>
                     <span class="block text-xs">Logged in as</span>
-                    <span id="user-block" class="block font-bold text-sm">Gerrit Hillebrecht</span>
+                    <span id="user-block" class="block font-bold text-sm">
+                        {{current_user}}
+                    </span>
                 </div>
-                <button type="button" class="user-auth-button text-white bg-primary-700 hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                    Switch user
-                </button>
+                <div class="flex items-center pl-4">
+                    <svg class="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true"
+                         xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="m19 9-7 7-7-7"/>
+                    </svg>
+
+                </div>
             </div>
+            <!-- Dropdown menu -->
+            <div id="dropdownDivider"
+                 class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDividerButton">
+                    <li>
+                        <a href="#"
+                           class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                            Profile
+                        </a>
+                    </li>
+                </ul>
+                <div class="py-2">
+                    <a href="/logout"
+                       class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                        Logout
+                    </a>
+                </div>
+            </div>
+            {% endif %}
         </div>
     </nav>
 </header>

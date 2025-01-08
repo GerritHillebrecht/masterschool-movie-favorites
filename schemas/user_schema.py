@@ -1,10 +1,12 @@
+from flask_login import UserMixin
 from sqlalchemy import Column, Integer, String, func
+from werkzeug.security import generate_password_hash, check_password_hash
 
 from database.extensions import db
 from schemas.base_schema import BaseModel
 
 
-class User(BaseModel):
+class User(BaseModel, UserMixin):
     """
     Represents a user in the system.
 
@@ -27,6 +29,15 @@ class User(BaseModel):
     id = Column(Integer, primary_key=True, autoincrement=True)
     firstname = Column(String, nullable=False)
     lastname = Column(String, nullable=False)
+    username = Column(String, unique=True, nullable=False)
+    email = Column(String, unique=True, nullable=False)
+    password_hash = Column(String)
     movies = db.relationship('Movie', back_populates='user', lazy=True, cascade="all, delete-orphan")
     created_at = db.Column(db.DateTime, server_default=func.current_timestamp())
     updated_at = db.Column(db.DateTime, server_default=func.current_timestamp())
+
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)

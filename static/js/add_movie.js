@@ -8,11 +8,7 @@ const movie_form = document.forms.movie_form
 movie_form.addEventListener("submit", async (event) => {
     event.preventDefault()
 
-    const user = localStorage.getItem("selectedUser")
-    const userData = JSON.parse(user)
-
     const movie = {
-        user_id: userData.id,
         name: movie_form.title.value,
         poster: movie_form.poster.value,
         rating: movie_form.rating.value,
