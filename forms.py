@@ -26,3 +26,22 @@ class MovieForm(FlaskForm):
     watch_time = TimeField("Time", validators=[DataRequired()])
     watch_date = DateField("Date", validators=[DataRequired()], default=datetime.today)
     plot = TextAreaField("Movie Plot", validators=[DataRequired()])
+
+
+class UpdateMovieForm(FlaskForm):
+    name = StringField("Movie Title", validators=[DataRequired()])
+    director = StringField("Director")
+    poster = StringField("Poster", validators=[DataRequired()])
+    genre = StringField("Genre")
+    actors = StringField("Actors")
+    writer = StringField("Writer")
+    awards = StringField("Awards")
+    boxOffice = StringField("BoxOffice")
+    # watch_time = TimeField("Time", validators=[DataRequired()])
+    # watch_date = DateField("Date", validators=[DataRequired()], default=datetime.today)
+    plot = TextAreaField("Movie Plot")
+    # rating = IntegerField("Rating")
+    youtube_video_id = StringField("Youtube Video ID")
+    runtime = IntegerField("Runtime")
+    imdbId = StringField("ImdbID")
+    release_year = IntegerField("Release Year")

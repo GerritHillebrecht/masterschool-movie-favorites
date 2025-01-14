@@ -6,6 +6,10 @@
   navigation: auto;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 ::selection {
   color: white;
   background: red;

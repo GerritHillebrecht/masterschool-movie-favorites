@@ -43,7 +43,6 @@ export async function deleteMovie(movieId) {
     const res = await fetch(`${API_URL}/delete_movie/${movieId}`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(user)
     })
 
     if (!res.ok) {

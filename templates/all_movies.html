@@ -1,0 +1,51 @@
+{% extends "_base.html" %}
+
+{% block title %}
+All my Movies
+{% endblock %}
+
+{% block css_imports %}
+{% endblock %}
+
+{% block js_imports %}
+<script defer>
+    const movieCards = document.querySelectorAll(".movie-card")
+
+    const addEntryAnimation = (entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("animate-fade-in-down")
+                observer.unobserve(entry.target)
+            }
+        })
+    }
+
+    const observer = new IntersectionObserver(addEntryAnimation, {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.3
+    });
+
+    movieCards.forEach(movieCard => { observer.observe(movieCard); })
+
+</script>
+{% endblock %}
+
+{% block hero %}
+<section class="relative">
+    <div class="max-w-7xl mx-auto gap-x-4">
+        {% for movie_list in movies_list %}
+        <div class="mt-8">
+            <h1 class="text-6xl">{{movie_list.letter}}</h1>
+            <p class="mb-4">{{movie_list.movies | length}} movies</p>
+            <div class="grid grid-cols-3 lg:grid-cols-5 gap-x-2">
+                {% for movie in movie_list.movies %}
+                {% set index = loop.index0 %}
+                {% include "components/movie_card.html" with context %}
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

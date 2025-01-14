@@ -84,13 +84,35 @@ def get_calendar_evets():
 
     return jsonify([
         {
+            "movie_id": movie.id,
             "title": movie.name,
-            "start": str(movie.created_at),
-            "end": str(parser.parse(movie.created_at.isoformat()) + timedelta(minutes=1)),
+            "start": str(movie.watch_date),
+            "end": str(parser.parse(movie.watch_date.isoformat()) + timedelta(minutes=int(movie.runtime))),
             "editable": True
         }
         for movie in movies
     ]), 200
+
+
+@api_routes.post(f"{api_path}/calendar/update")
+@handle_exceptions
+def update_movie_by_calendar():
+    body = request.get_json()
+    movie_id = body.get("movie_id")
+    movie_date = body.get("movie_date")
+
+    if not movie_id or not movie_date:
+        return jsonify({
+            "message": "Missing data in your request"
+        }), 404
+
+    movie_date = parser.parse(movie_date)
+
+    print(movie_id, current_user.id, movie_date)
+    updated_movie = current_app.data_manager.update_movie({"watch_date": movie_date}, current_user.id, movie_id)
+
+    print(updated_movie)
+    return jsonify(updated_movie.to_dict()), 200
 
 
 @api_routes.post(f"{api_path}/users")

@@ -48,4 +48,4 @@ def get_login():
 @auth_routes.get('/logout')
 def logout():
     logout_user()
-    return redirect(url_for('auth.get_login'))
+    return redirect(url_for('static_routes.get_landing_page'))

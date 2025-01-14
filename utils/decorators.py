@@ -1,5 +1,7 @@
 from functools import wraps
 
+from flask import redirect, url_for
+
 from flask import jsonify
 from sqlalchemy.exc import SQLAlchemyError, IntegrityError, DataError, OperationalError
 
@@ -23,5 +25,16 @@ def handle_exceptions(func):
         except SQLAlchemyError as e:
             db.session.rollback()
             return jsonify({"error": str(e)}), 500
+
+    return wrapper
+
+
+def handle_no_search_results(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        try:
+            return func(*args, **kwargs)
+        except SQLAlchemyError as e:
+            return redirect(url_for("static_routes.get_landing_page"))
 
     return wrapper

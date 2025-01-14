@@ -1,12 +1,10 @@
 """
-The app at times falls short in usability to make room for aesthetic choices.
-E.g. the autocomplete-search should be in the navbar, but the robot really
-does look cool in combination with transparent elements.
+This app took way longer than it should have, so no responsiveness is included, so I can finally finish it.
 """
 import logging
 from os import path
 
-from flask import Flask, request
+from flask import Flask, request, redirect
 from flask_cors import CORS
 from flask_login import LoginManager, current_user
 from pbu import Logger

@@ -1,22 +1,57 @@
-{% extends "_base.html" %}
-{% block title %} Home {% endblock %}
-{% block js_imports %}
+{% extends "_base.html" %} {% block title %} Home {% endblock %} {% block
+js_imports %}
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
 <script defer>
-    const calendar_events_url = `${window.location.origin}/api/v1/calendar`
-    console.log(calendar_events_url)
-    var calendarEl = document.getElementById('calendar');
+    async function update_movie_date(movie_id, movie_date) {
+      const response = await fetch(
+        `${window.location.origin}/api/v1/calendar/update`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            movie_id,
+            movie_date,
+          }),
+        }
+      );
+
+      if (response.ok) {
+        alert("Movie date updated successfully");
+      } else {
+        alert("Movie date update failed");
+      }
+    }
+
+    const calendar_events_url = `${window.location.origin}/api/v1/calendar`;
+
+    var calendarEl = document.getElementById("calendar");
+
     var calendar = new FullCalendar.Calendar(calendarEl, {
-      initialView: 'dayGridMonth',
+      initialView: "dayGridMonth",
       events: calendar_events_url,
-      locale: "de",
+      locale: "en",
+      nowIndicator: true,
+      weekNumbers: true,
+      eventDrop: function (info) {
+        update_movie_date(
+          info.event.extendedProps.movie_id,
+          info.event.start.toISOString()
+        );
+      },
+      dateClick: function (info) {
+        calendar.changeView("timeGridWeek", info.dateStr);
+      },
     });
+
     calendar.render();
 </script>
-{% endblock %}
-{% block content %}
+{% endblock %} {% block content %}
 <section class="">
     <div class="p-6">
+        <i class="text-center block mt-1 text-xs">Drag&Drop Movies to update the date you want to watch them. Click on a
+            date to update the time.</i>
         <div id="calendar"></div>
     </div>
 </section>

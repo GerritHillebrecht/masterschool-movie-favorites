@@ -1,16 +1,12 @@
-{% extends "_base.html" %}
-{% block title %} Home {% endblock %}
-<p>
-    Welcome to Movie Favorites!
+{% extends "_base_auth.html" %}
 
-    Discover, save, and share your favorite movies with ease. Whether you're a casual viewer or a film fanatic, our app
-    offers the perfect platform to keep track of all the movies you love.
+{% block content %}
 
-    Explore: Dive into our extensive database of films, from timeless classics to the latest blockbusters.
 
-    Curate: Create personalized lists of your top picks and never lose track of a must-watch movie again.
+{% include "components/landing/hero.html" %}
+<!--{% include "components/landing/stats.html" %}-->
+{% include "components/landing/features.html" %}
+{% include "components/landing/cta.html" %}
+{% include "components/landing/pricing.html" %}
 
-    Share: Show off your impeccable taste by sharing your favorite lists with friends and fellow movie lovers.
-
-    Join our community today and let Movie Favorites be your ultimate movie companion!
-</p>
+{% endblock %}

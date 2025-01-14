@@ -1,33 +1,70 @@
 {% extends "_base.html" %}
 
 {% block content %}
-<div class="mx-auto max-w-6xl grid grid-cols-[1fr,2fr] gap-x-6 relative py-6">
-    <div>
-        <span class="text-xs italic text-center block">Press back and forward to see view-transition-api in action</span>
-        <img style="view-transition-name: movie-image-{{movie.id}}" class="w-full block aspect-[11/16] object-center object-cover" src="{{movie.poster}}"
-             alt="{{movie.name}}"/>
+<div class="relative">
+    <div class="relative h-[calc(75vh)] parallax">
+        {% if movie.youtube_video_id %}
+        <iframe class="w-full h-full"
+                src="https://www.youtube.com/embed/{{movie.youtube_video_id}}?autoplay=1&mute=1&si=HGwX0-iqs8rnNN-E&amp;controls=0"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        {% else %}
+        <img src="{{movie.poster}}" alt="{{movie.name}}"
+             class="block absolute inset-0 w-full h-full object-cover object-center blur"/>
+        {% endif %}
     </div>
-    <div>
-        <div class="sticky top-20">
-            <div class="flex items-center gap-1 mb-2">
-                {% for genre in movie.genre.split(", ") %}
-                <span class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">
+    <div class="z-10 relative py-6 bg-neutral-900">
+        <div class="absolute z-[5] inset-x-0 bottom-full bg-gradient-to-t from-neutral-900 to-neutral-900/0 h-1/2 pointer-events-none"></div>
+        <div class="mx-auto max-w-6xl grid grid-cols-[1fr,2fr] gap-x-6 relative">
+            <div>
+                <span class="text-xs italic text-center block">Press back and forward to see view-transition-api in action</span>
+                <img style="view-transition-name: movie-image-{{movie.id}}"
+                     class="w-full block aspect-[11/16] object-center object-cover" src="{{movie.poster}}"
+                     alt="{{movie.name}}"/>
+            </div>
+            <div>
+                <div class="sticky top-20">
+                    <div class="flex items-center gap-1 mb-2">
+                        {% for genre in movie.genre.split(", ") %}
+                        <span class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">
                 {{genre}}
             </span>
-                {% endfor %}
+                        {% endfor %}
+                    </div>
+                    <h1 class="text-4xl font-bold mb-2">{{movie.name}}</h1>
+                    <p>{{movie.actors}}</p>
+                    <p class="text-xs italic">Written by {{movie.writers}}</p>
+                    <blockquote class="text-xl mt-4 italic font-semibold text-gray-900 dark:text-white">
+                        <p class="">{{movie.awards}}</p>
+                    </blockquote>
+                    <p class="text-sm">Box office: {{movie.boxOffice}}</p>
+                    <p class="mt-4">{{movie.plot}}</p>
+                    <div class="mt-4 flex items-center gap-x-2">
+                        <button id="deleteButton" type="button" data-movie-id="{{movie.id}}"
+                                class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                            <svg class="w-3.5 h-3.5 mr-1 mb-0.5 text-gray-800 dark:text-white" aria-hidden="true"
+                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                 viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                      stroke-width="2"
+                                      d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
+                            </svg>
+
+                            Remove movie
+                        </button>
+                        <a href="/movie/update/{{movie.id}}"
+                           class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                            Update movie
+                            <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                      stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
             </div>
-            <h1 class="text-4xl font-bold mb-2">{{movie.name}}</h1>
-            <p>{{movie.actors}}</p>
-            <p class="text-xs italic">Written by {{movie.writers}}</p>
-            <blockquote class="text-xl mt-4 italic font-semibold text-gray-900 dark:text-white">
-                <p class="">{{movie.awards}}</p>
-            </blockquote>
-            <p class="text-sm">Box office: {{movie.boxOffice}}</p>
-            <p class="mt-4">{{movie.plot}}</p>
-            <button type="button" id="deleteButton" data-movie-id="{{movie.id}}"
-                    class="mt-4 px-3 py-2 text-sm font-medium text-center text-white bg-primary-700 rounded-lg hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                Remove movie
-            </button>
         </div>
     </div>
 </div>
@@ -35,4 +72,13 @@
 
 {% block js_imports %}
 <script src="{{url_for('static',filename='js/movie_details.js')}}" type="module" defer></script>
+<script>
+    const parallax = document.querySelector('.parallax');
+
+    document.addEventListener('scroll', function() {
+        const scrollPosition = window.pageYOffset;
+        parallax.style.transform = 'translateY(' + scrollPosition * 0.5 + 'px)';
+    });
+</script>
+</script>
 {% endblock %}

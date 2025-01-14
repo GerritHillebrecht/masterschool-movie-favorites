@@ -7,10 +7,10 @@ Register
 {% block content %}
 <div class="h-screen w-screen flex items-center justify-center relative">
 
-    <img src="{{url_for('static',filename='images/bg-grainient-3.jpeg')}}"
+    <img src="{{url_for('static',filename='images/bg-grainient-3-resized.jpeg')}}"
          class="absolute inset-0 block w-full h-full object-center object-cover" alt="background-image"/>
     <div class="p-2 backdrop-blur-sm backdrop-saturate-150 max-w-4xl w-full rounded-2xl bg-white/40">
-        <form method="post" class="p-6 shadow-xl rounded-xl bg-white border relative z-10">
+        <form method="post" class="p-6 shadow-xl rounded-xl bg-white border relative z-10 text-neutral-800">
             {{ form.hidden_tag() }}
             <h1 class="text-3xl font-bold mb-4">Welcome to Filmster</h1>
             <div class="">
@@ -26,9 +26,7 @@ Register
                         {{ form.username(size=32, type_="text", autocomplete_="username", id_="username",
                         placeholder_="Fancy username...", class_="bg-gray-50 border border-gray-300 text-gray-900
                         text-sm
-                        rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700
-                        dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500
-                        dark:focus:border-primary-500") }}
+                        rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5") }}
                     </div>
                     <div>
                     <span class="block mb-2 text-sm font-medium">
@@ -37,9 +35,7 @@ Register
                         {{ form.email(size=32, autocomplete="email", id_="email", placeholder_="Your E-Mail-address",
                         class_="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
                         focus:ring-primary-500
-                        focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600
-                        dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500
-                        dark:focus:border-primary-500") }}
+                        focus:border-primary-500 block w-full p-2.5") }}
                     </div>
                     <div>
                     <span class="block mb-2 text-sm font-medium">
@@ -52,9 +48,7 @@ Register
                         id_="firstname",
                         placeholder_="I am called...",
                         class_="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
-                        focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700
-                        dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500
-                        dark:focus:border-primary-500"
+                        focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
                         )
                         }}
                     </div>
@@ -70,9 +64,7 @@ Register
                         placeholder_="My family-name",
                         class_="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
                         focus:ring-primary-500
-                        focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600
-                        dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500
-                        dark:focus:border-primary-500"
+                        focus:border-primary-500 block w-full p-2.5"
                         )
                         }}
                     </div>
@@ -89,9 +81,7 @@ Register
                         placeholder_="Choose a password",
                         class_="bg-gray-50 border border-gray-300 text-gray-900
                         text-sm
-                        rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700
-                        dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500
-                        dark:focus:border-primary-500"
+                        rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
                         )
                         }}
                     </div>
@@ -107,9 +97,7 @@ Register
                         placeholder_="Repeat the password",
                         class_="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
                         focus:ring-primary-500
-                        focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600
-                        dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500
-                        dark:focus:border-primary-500"
+                        focus:border-primary-500 block w-full p-2.5"
                         )
                         }}
                     </div>

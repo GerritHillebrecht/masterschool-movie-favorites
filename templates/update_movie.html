@@ -1,0 +1,138 @@
+{% extends "_base.html" %}
+
+{% block title %}
+Update {{movie.name}}
+{% endblock %}
+
+{% block content %}
+<form class="max-w-5xl mx-auto w-full py-10" method="post" name="update_movie_form">
+    {{ form.hidden_tag() }}
+    <div class="grid gap-6 mb-6 md:grid-cols-2">
+        <div>
+            <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                {{ form.name.label }}
+            </span>
+            {{ form.name(value=movie.name, type="text", class="bg-gray-50 border border-gray-300 text-gray-900
+            text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5
+            dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+            dark:focus:ring-primary-500 dark:focus:border-primary-500") }}
+        </div>
+        <div>
+            <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                {{ form.actors.label }}
+            </span>
+            {{ form.actors(value=movie.actors, type="text", class="bg-gray-50 border border-gray-300 text-gray-900
+            text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5
+            dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+            dark:focus:ring-primary-500 dark:focus:border-primary-500") }}
+        </div>
+        <div>
+            <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                {{ form.writer.label }}
+            </span>
+            {{ form.writer(value=movie.writer, type="text", class="bg-gray-50 border border-gray-300 text-gray-900
+            text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5
+            dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+            dark:focus:ring-primary-500 dark:focus:border-primary-500") }}
+        </div>
+        <div>
+            <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                {{ form.director.label }}
+            </span>
+            {{ form.director(value=movie.director, type="text", class="bg-gray-50 border border-gray-300 text-gray-900
+            text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5
+            dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+            dark:focus:ring-primary-500 dark:focus:border-primary-500") }}
+        </div>
+        <div>
+            <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                {{ form.poster.label }}
+            </span>
+            {{ form.poster(value=movie.poster, type="text", class="bg-gray-50 border border-gray-300 text-gray-900
+            text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5
+            dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+            dark:focus:ring-primary-500 dark:focus:border-primary-500") }}
+        </div>
+        <div>
+            <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                {{ form.genre.label }}
+            </span>
+            {{ form.genre(value=movie.genre, type="text", class="bg-gray-50 border border-gray-300 text-gray-900
+            text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5
+            dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+            dark:focus:ring-primary-500 dark:focus:border-primary-500") }}
+        </div>
+        <div>
+            <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                {{ form.awards.label }}
+            </span>
+            {{ form.awards(value=movie.awards, type="text", class="bg-gray-50 border border-gray-300 text-gray-900
+            text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5
+            dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+            dark:focus:ring-primary-500 dark:focus:border-primary-500") }}
+        </div>
+        <div>
+            <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                {{ form.boxOffice.label }}
+            </span>
+            {{ form.boxOffice(value=movie.boxOffice, type="text", class="bg-gray-50 border border-gray-300 text-gray-900
+            text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5
+            dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+            dark:focus:ring-primary-500 dark:focus:border-primary-500") }}
+        </div>
+        <div>
+            <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                {{ form.youtube_video_id.label }}
+            </span>
+            {{ form.youtube_video_id(value=movie.youtube_video_id, type="text", class="bg-gray-50 border border-gray-300
+            text-gray-900
+            text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5
+            dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+            dark:focus:ring-primary-500 dark:focus:border-primary-500") }}
+        </div>
+        <div>
+            <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                {{ form.runtime.label }}
+            </span>
+            {{ form.runtime(value=movie.runtime, type="text", class="bg-gray-50 border border-gray-300 text-gray-900
+            text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5
+            dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+            dark:focus:ring-primary-500 dark:focus:border-primary-500") }}
+        </div>
+        <div>
+            <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                {{ form.imdbId.label }}
+            </span>
+            {{ form.imdbId(value=movie.imdbId, type="text", class="bg-gray-50 border border-gray-300 text-gray-900
+            text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5
+            dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+            dark:focus:ring-primary-500 dark:focus:border-primary-500") }}
+        </div>
+        <div>
+            <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                {{ form.release_year.label }}
+            </span>
+            {{ form.release_year(value=movie.release_year, type="text", class="bg-gray-50 border border-gray-300
+            text-gray-900
+            text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5
+            dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+            dark:focus:ring-primary-500 dark:focus:border-primary-500") }}
+        </div>
+
+        <!-- Plot -->
+        <div class="col-span-2">
+            <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                {{ form.plot.label }}
+            </span>
+            {{ form.plot(rows="4", class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50
+            rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700
+            dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500
+            dark:focus:border-primary-500") }}
+        </div>
+    </div>
+    <button type="submit"
+            class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
+        Update
+    </button>
+</form>
+{% endblock %}

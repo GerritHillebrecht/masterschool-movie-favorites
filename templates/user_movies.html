@@ -89,6 +89,7 @@ Movies for {{user.firstname}} {{user.lastname}}
             <div class="swiper-wrapper z-20 relative">
                 {% for movie in movies_sorted_upcoming %}
                 <div class="swiper-slide">
+                    {% set relative_date = relative_times[loop.index0] %}
                     {% include "components/movie_card_hero.html" with context %}
                 </div>
                 {% endfor %}
@@ -119,8 +120,15 @@ Movies for {{user.firstname}} {{user.lastname}}
         <div class="swiper-scrollbar"></div>
     </div>
 </section>
+<div class="flex items-center justify-center mx-auto my-6">
+    <a href="/movies/all"
+       class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
+        Show all movies
+    </a>
+</div>
 <section class="pt-6 relative z-10 bg-neutral-900 text-white">
-    <h1 data-tooltip-target="tooltip-default" data-tooltip-placement="bottom" class="text-3xl font-bold text-center px-6 pb-2 mb-6 border-b-4 border-b-primary-400 w-fit mx-auto">
+    <h1 data-tooltip-target="tooltip-default" data-tooltip-placement="bottom"
+        class="text-3xl font-bold text-center px-6 pb-2 mb-6 border-b-4 border-b-primary-400 w-fit mx-auto">
         Recommendations
         <!-- Recommendations by AI based on your saved movies. -->
     </h1>
