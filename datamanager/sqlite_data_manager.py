@@ -18,7 +18,7 @@ class SQLiteDataManager(DataMangerInterface):
             with app.app_context():
                 db.create_all()
 
-    def get_all_users(self) -> list[User]:
+    def get_all_users(self):
         """
         Returns all users from the database.
         """
