@@ -4,10 +4,10 @@ flask_swagger_ui
 flask_sqlalchemy
 flask-login
 flask-wtf
-python-dotenv~=1.0.1
-sqlalchemy~=2.0.36
+python-dotenv
+sqlalchemy
 
-Werkzeug~=3.1.3
-pbu~=1.1.10
-requests~=2.32.3
-WTForms~=3.2.1
+Werkzeug
+pbu
+requests
+WTForms
