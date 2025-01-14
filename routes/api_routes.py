@@ -76,7 +76,7 @@ def get_users():
     return jsonify([user.to_dict() for user in users]), 200
 
 
-@api_routes.get(f"{api_path}/calendar")
+@api_routes.get(f"/api/v1/calendar")
 @handle_exceptions
 @login_required
 def get_calendar_evets():
