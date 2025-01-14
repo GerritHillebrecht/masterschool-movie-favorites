@@ -4,47 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee16fce7-c09e-415e-b07c-8bcbaf2be080" name="Changes" comment="[feat] added speculationrules, slider, view-transition-api, authentication">
-      <change afterPath="$PROJECT_DIR$/_logs/info.log.2025-01-10" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/bg-grainient-3-resized.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/hero-product-2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/hero-product.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/all_movies.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/components/landing/cta.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/components/landing/features.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/components/landing/hero.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/components/landing/pricing.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/components/landing/stats.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/no_firefox.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/update_movie.html" afterDir="false" />
+    <list default="true" id="ee16fce7-c09e-415e-b07c-8bcbaf2be080" name="Changes" comment="[feat] added movie update functionality">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/movie_library.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/database/movie_library.sqlite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api_routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/auth_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/routes/auth_routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/static_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/routes/static_routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schemas/movie_schema.py" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/movie_schema.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/global.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/output.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/output.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/bg-grainient-resized.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/bg-grainient-resized.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/movie_details.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/movie_details.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/toast.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/_base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/_base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/_base_auth.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/_base_auth.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/calendar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/calendar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/components/movie_card_hero.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/components/movie_card_hero.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/components/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/components/navbar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/components/navbar_menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/components/navbar_menu.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/login_backup.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/movie_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/movie_detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/search.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user_movies.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user_movies.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/decorators.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/decorators.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,17 +48,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "DefaultHtmlFileTemplate": "HTML File",
-    "Python.main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Development/MasterSchool-Projects/masterschool-movie-project/templates"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Development/MasterSchool-Projects/masterschool-movie-project/templates&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Development\MasterSchool-Projects\masterschool-movie-project\templates" />
@@ -248,7 +211,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736379761352</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="[feat] added movie update functionality">
+      <option name="closed" value="true" />
+      <created>1736840193333</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1736840193333</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -266,6 +237,7 @@
     <MESSAGE value="[chore] updated frontend api-routes to relative path" />
     <MESSAGE value="[chore] updated http to https for omdb api url" />
     <MESSAGE value="[feat] added speculationrules, slider, view-transition-api, authentication" />
-    <option name="LAST_COMMIT_MESSAGE" value="[feat] added speculationrules, slider, view-transition-api, authentication" />
+    <MESSAGE value="[feat] added movie update functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="[feat] added movie update functionality" />
   </component>
 </project>

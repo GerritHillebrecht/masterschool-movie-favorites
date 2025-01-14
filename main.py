@@ -4,7 +4,7 @@ This app took way longer than it should have, so no responsiveness is included, 
 import logging
 from os import path
 
-from flask import Flask, request, redirect
+from flask import Flask, request
 from flask_cors import CORS
 from flask_login import LoginManager, current_user
 from pbu import Logger
