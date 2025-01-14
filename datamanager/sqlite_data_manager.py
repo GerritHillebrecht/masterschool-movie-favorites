@@ -24,7 +24,7 @@ class SQLiteDataManager(DataMangerInterface):
         """
         return db.session.query(User).all()
 
-    def get_user_movies(self, user_id) -> list[Movie]:
+    def get_user_movies(self, user_id):
         """
         Returns all movies of specified user.
         :param user_id: The id of the user to fetch the movies for.
@@ -47,7 +47,7 @@ class SQLiteDataManager(DataMangerInterface):
         """
         return db.session.query(User).filter(User.id == user_id).one()
 
-    def add_user(self, user: User) -> User:
+    def add_user(self, user: User):
         """
         Adds a user to the database.
         :param user: A user item of type <User>
@@ -55,7 +55,7 @@ class SQLiteDataManager(DataMangerInterface):
         """
         return self._add_instance(user, User)
 
-    def add_movie(self, movie: Movie) -> Movie:
+    def add_movie(self, movie: Movie):
         """
         Adds a movie to the database.
         :param movie: A movie item of type <Movie>
@@ -71,7 +71,7 @@ class SQLiteDataManager(DataMangerInterface):
         """
         return db.session.query(Movie).filter(Movie.id == movie_id).one()
 
-    def get_all_directors(self) -> list[Director]:
+    def get_all_directors(self):
         """
         Fetches all directors and returns them.
         :return: list[dict]
@@ -80,7 +80,7 @@ class SQLiteDataManager(DataMangerInterface):
                 # .join(Movie)
                 .all())
 
-    def add_director(self, director: Director) -> Director:
+    def add_director(self, director: Director):
         """
         Adds a director to the database.
         :param director: A director item of type <Director>
@@ -88,7 +88,7 @@ class SQLiteDataManager(DataMangerInterface):
         """
         return self._add_instance(director, Director)
 
-    def update_movie(self, updated_movie_data, user_id: int, movie_id: int) -> Movie:
+    def update_movie(self, updated_movie_data, user_id: int, movie_id: int):
         """
         Updates a movie in the database based on given movie_id-
         :param updated_movie_data:
