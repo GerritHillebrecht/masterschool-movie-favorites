@@ -30,7 +30,7 @@ api_routes = Blueprint("routes", __name__)
 api_routes.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
 
 
-@api_routes.post(f"{api_path}/movies")
+@api_routes.post(f"/api/v1/movies")
 @handle_exceptions
 def add_movie_to_db():
     form = MovieForm()
@@ -69,7 +69,7 @@ def add_movie_to_db():
     return redirect(url_for("static_routes.get_index"))
 
 
-@api_routes.get(f"{api_path}/users")
+@api_routes.get(f"/api/v1/users")
 @handle_exceptions
 def get_users():
     users = current_app.data_manager.get_all_users()
@@ -94,7 +94,7 @@ def get_calendar_evets():
     ]), 200
 
 
-@api_routes.post(f"{api_path}/calendar/update")
+@api_routes.post(f"/api/v1/calendar/update")
 @handle_exceptions
 def update_movie_by_calendar():
     body = request.get_json()
@@ -115,7 +115,7 @@ def update_movie_by_calendar():
     return jsonify(updated_movie.to_dict()), 200
 
 
-@api_routes.post(f"{api_path}/users")
+@api_routes.post(f"/api/v1/users")
 @handle_exceptions
 def add_user():
     body = request.get_json()
@@ -132,14 +132,14 @@ def add_user():
     return jsonify(current_app.data_manager.add_user(user).to_dict()), 201
 
 
-@api_routes.get(f"{api_path}/users/<int:user_id>")
+@api_routes.get(f"/api/v1/users/<int:user_id>")
 @handle_exceptions
 def get_movies(user_id: int):
     movies = current_app.data_manager.get_user_movies(user_id)
     return jsonify([movie.to_dict() for movie in movies]), 200
 
 
-@api_routes.post(f"{api_path}/users/<int:user_id>")
+@api_routes.post(f"/api/v1/users/<int:user_id>")
 # @handle_exceptions
 def add_movie(user_id: int):
     body = request.get_json()
@@ -173,7 +173,7 @@ def add_movie(user_id: int):
     return jsonify(current_app.data_manager.add_movie(movie).to_dict()), 201
 
 
-@api_routes.put(f"{api_path}/users/<int:user_id>/update_movie/<int:movie_id>")
+@api_routes.put(f"/api/v1/users/<int:user_id>/update_movie/<int:movie_id>")
 @handle_exceptions
 def update_movie(user_id: int, movie_id: int):
     body = request.get_json()
@@ -182,13 +182,13 @@ def update_movie(user_id: int, movie_id: int):
     return jsonify(updated_movie.to_dict()), 200
 
 
-@api_routes.delete(f"{api_path}/delete_movie/<int:movie_id>")
+@api_routes.delete(f"/api/v1/delete_movie/<int:movie_id>")
 @handle_exceptions
 def delete_movie(movie_id: int):
     return jsonify(current_app.data_manager.delete_movie(movie_id).to_dict()), 204
 
 
-@api_routes.get(f"{api_path}/directors")
+@api_routes.get(f"/api/v1/directors")
 @handle_exceptions
 def get_directors():
     directors = current_app.data_manager.get_all_directors()
@@ -196,7 +196,7 @@ def get_directors():
     return jsonify([director.to_dict() for director in directors]), 200
 
 
-@api_routes.post(f"{api_path}/directors")
+@api_routes.post(f"/api/v1/directors")
 @handle_exceptions
 def add_director():
     body = request.get_json()
