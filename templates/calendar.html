@@ -43,6 +43,10 @@ js_imports %}
       dateClick: function (info) {
         calendar.changeView("timeGridWeek", info.dateStr);
       },
+      eventClick: function (info) {
+      console.log(info)
+        window.location.assign(`/movie/${info.event.extendedProps.movie_id}`)
+      }
     });
 
     calendar.render();
