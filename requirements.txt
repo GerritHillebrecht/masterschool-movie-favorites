@@ -3,6 +3,7 @@ flask_cors
 flask_swagger_ui
 flask_sqlalchemy
 flask-login
+flask_login
 flask-wtf
 python-dotenv
 sqlalchemy
@@ -11,3 +12,5 @@ Werkzeug
 pbu
 requests
 WTForms
+humanize
+email-validator
