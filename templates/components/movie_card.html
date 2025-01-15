@@ -2,7 +2,7 @@
     <a href="/movie/{{movie.id}}"
        class="relative hover:scale-105 overflow-hidden isolate block p-6 bg-white border border-gray-200 rounded-lg shadow-lg transition duration-300 hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
         <div class="isolate after:z-10 after:absolute after:inset-0 after:bg-gradient-to-t after:from-black/100 after:to-transparent absolute inset-0 -z-[1]">
-            <img style="view-transition-name: movie-image-{{movie.id}}" src="{{movie.poster}}" alt="{{movie.title}}"
+            <img style="view-transition-name: movie-image{{trans-name}}-{{movie.id}}" src="{{movie.poster}}" alt="{{movie.title}}"
                  class="inset-0 absolute w-full h-full block object-center object-cover"/>
         </div>
         <div class="relative aspect-[9/15] flex flex-col justify-between">

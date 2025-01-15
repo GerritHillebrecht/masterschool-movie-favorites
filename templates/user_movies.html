@@ -113,6 +113,7 @@ Movies for {{user.firstname}} {{user.lastname}}
             {% for movie in movies_sorted_rating %}
             <div class="swiper-slide px-2">
                 {% set index = loop.index0 %}
+                {% set trans_name = "" %}
                 {% include "components/movie_card.html" with context %}
             </div>
             {% endfor %}
@@ -138,6 +139,7 @@ Movies for {{user.firstname}} {{user.lastname}}
             {% for movie in movies_sorted_seen %}
             <div class="swiper-slide px-2">
                 {% set index = loop.index0 %}
+                {% set trans_name = "-no-show" %}
                 {% include "components/movie_card.html" with context %}
             </div>
             {% endfor %}
