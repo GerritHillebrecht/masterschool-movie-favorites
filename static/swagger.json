@@ -1,386 +1,467 @@
 {
-  "openapi": "3.0.0",
+  "swagger": "2.0",
   "info": {
-    "title": "Filmster API",
-    "version": "1.0.1"
+    "description": "API documentation for Filmster",
+    "version": "1.0.0",
+    "title": "Filmster API"
   },
+  "host": "movie-favorites-wgu4b.ondigitalocean.app",
+  "basePath": "/api/v1",
+  "schemes": [
+    "https"
+  ],
   "paths": {
-    "/api/v1/users": {
+    "/movies": {
+      "post": {
+        "tags": [
+          "Movies"
+        ],
+        "summary": "Add a movie",
+        "description": "Adds a movie to the database using data from an external API and a form.",
+        "parameters": [
+          {
+            "name": "title",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "The title of the movie"
+          }
+        ],
+        "responses": {
+          "302": {
+            "description": "Redirect to the appropriate page based on the result"
+          }
+        }
+      }
+    },
+    "/users": {
       "get": {
+        "tags": [
+          "Users"
+        ],
         "summary": "Get all users",
-        "operationId": "get_users",
-        "tags": [
-          "Users"
-        ],
+        "description": "Retrieves all users from the database.",
         "responses": {
           "200": {
-            "description": "A list of users",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/User"
-                  }
-                }
+            "description": "List of users",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
               }
             }
           }
         }
       },
       "post": {
-        "summary": "Add a new user",
-        "operationId": "add_user",
         "tags": [
           "Users"
         ],
-        "requestBody": {
-          "description": "User object that needs to be added to the database",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/User"
-              }
+        "summary": "Add a user",
+        "description": "Adds a new user to the database.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
             }
           }
-        },
+        ],
         "responses": {
           "201": {
-            "description": "The newly created user",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                }
-              }
+            "description": "The added user's data",
+            "schema": {
+              "$ref": "#/definitions/User"
             }
           },
           "400": {
-            "description": "Invalid input"
+            "description": "No JSON content found in the request"
           }
         }
       }
     },
-    "/api/v1/users/{user_id}": {
-      "get": {
-        "summary": "Get all movies for a user",
-        "operationId": "get_movies",
-        "tags": [
-          "Users"
-        ],
-        "parameters": [
-          {
-            "name": "user_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            },
-            "description": "ID of the user"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A list of movies",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Movie"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "summary": "Add a new movie for a user",
-        "operationId": "add_movie",
-        "tags": [
-          "Users"
-        ],
-        "parameters": [
-          {
-            "name": "user_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            },
-            "description": "ID of the user"
-          }
-        ],
-        "requestBody": {
-          "description": "Movie object that needs to be added to the database",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Movie"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "The newly created movie",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Movie"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid input"
-          }
-        }
-      }
-    },
-    "/api/v1/users/{user_id}/update_movie/{movie_id}": {
+    "/users/{user_id}/update_movie/{movie_id}": {
       "put": {
-        "summary": "Update a movie for a user",
-        "operationId": "update_movie",
         "tags": [
-          "Users"
+          "Movies"
         ],
+        "summary": "Update a movie",
+        "description": "Updates a specific movie for a user.",
         "parameters": [
           {
             "name": "user_id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "integer"
-            },
-            "description": "ID of the user"
+            "type": "integer",
+            "format": "int64",
+            "description": "The ID of the user"
           },
           {
             "name": "movie_id",
             "in": "path",
             "required": true,
+            "type": "integer",
+            "format": "int64",
+            "description": "The ID of the movie"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
             "schema": {
-              "type": "integer"
-            },
-            "description": "ID of the movie"
+              "$ref": "#/definitions/Movie"
+            }
           }
         ],
-        "requestBody": {
-          "description": "Updated movie object",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Movie"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
-            "description": "The updated movie",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Movie"
-                }
-              }
+            "description": "The updated movie's data",
+            "schema": {
+              "$ref": "#/definitions/Movie"
             }
-          },
-          "400": {
-            "description": "Invalid input"
           }
         }
       }
     },
-    "/api/v1/users/{user_id}/delete_movie/{movie_id}": {
-      "delete": {
-        "summary": "Delete a movie for a user",
-        "operationId": "delete_movie",
+    "/users/{user_id}": {
+      "get": {
         "tags": [
           "Users"
         ],
+        "summary": "Get user's movies",
+        "description": "Retrieves movies for a specific user.",
         "parameters": [
           {
             "name": "user_id",
             "in": "path",
             "required": true,
+            "type": "integer",
+            "format": "int64",
+            "description": "The ID of the user"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of movies",
             "schema": {
-              "type": "integer"
-            },
-            "description": "ID of the user"
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Movie"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Movies"
+        ],
+        "summary": "Add a movie to user",
+        "description": "Adds a movie to a specific user's collection.",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "description": "The ID of the user"
           },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Movie"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "The added movie's data",
+            "schema": {
+              "$ref": "#/definitions/Movie"
+            }
+          },
+          "400": {
+            "description": "No JSON content found in the request"
+          }
+        }
+      }
+    },
+    "/delete_movie/{movie_id}": {
+      "delete": {
+        "tags": [
+          "Movies"
+        ],
+        "summary": "Delete a movie",
+        "description": "Deletes a specific movie from the database.",
+        "parameters": [
           {
             "name": "movie_id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "integer"
-            },
-            "description": "ID of the movie"
+            "type": "integer",
+            "format": "int64",
+            "description": "The ID of the movie"
           }
         ],
         "responses": {
           "204": {
-            "description": "Movie deleted successfully"
-          },
-          "400": {
-            "description": "Invalid input"
+            "description": "The deleted movie's data",
+            "schema": {
+              "$ref": "#/definitions/Movie"
+            }
           }
         }
       }
     },
-    "/api/v1/directors": {
+    "/directors": {
       "get": {
-        "summary": "Get all directors",
-        "operationId": "get_directors",
         "tags": [
           "Directors"
         ],
+        "summary": "Get all directors",
+        "description": "Retrieves all directors from the database.",
         "responses": {
           "200": {
-            "description": "A list of directors",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Director"
-                  }
-                }
+            "description": "List of directors",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Director"
               }
             }
           }
         }
       },
       "post": {
-        "summary": "Add a new director",
-        "operationId": "add_director",
         "tags": [
           "Directors"
         ],
-        "requestBody": {
-          "description": "Director object that needs to be added to the database",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Director"
-              }
+        "summary": "Add a director",
+        "description": "Adds a new director to the database.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Director"
             }
           }
-        },
+        ],
         "responses": {
           "200": {
-            "description": "The newly created director",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Director"
-                }
-              }
+            "description": "The added director's data",
+            "schema": {
+              "$ref": "#/definitions/Director"
             }
           },
           "400": {
-            "description": "Invalid input"
+            "description": "No JSON content found in the request"
+          }
+        }
+      }
+    },
+    "/calendar": {
+      "get": {
+        "tags": [
+          "Calendar"
+        ],
+        "summary": "Get calendar events",
+        "description": "Retrieves calendar events for the current user.",
+        "responses": {
+          "200": {
+            "description": "List of calendar events",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "movie_id": {
+                    "type": "integer",
+                    "format": "int64"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "start": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "end": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "editable": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/calendar/update": {
+      "post": {
+        "tags": [
+          "Calendar"
+        ],
+        "summary": "Update calendar movie",
+        "description": "Updates a movie's watch date based on calendar input.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "movie_id": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "movie_date": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The updated movie data",
+            "schema": {
+              "$ref": "#/definitions/Movie"
+            }
+          },
+          "404": {
+            "description": "Missing data in your request"
+          }
+        }
+      }
+    },
+    "/recommendations": {
+      "get": {
+        "tags": [
+          "Recommendations"
+        ],
+        "summary": "Get movie recommendations",
+        "description": "Retrieves movie recommendations from an external API.",
+        "responses": {
+          "200": {
+            "description": "List of movie recommendations",
+            "schema": {
+              "type": "object"
+            }
           }
         }
       }
     }
   },
-  "components": {
-    "schemas": {
-      "User": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer"
-          },
-          "firstname": {
-            "type": "string"
-          },
-          "lastname": {
-            "type": "string"
-          },
-          "movies": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Movie"
-            }
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time"
-          }
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "username": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "firstname": {
+          "type": "string"
+        },
+        "lastname": {
+          "type": "string"
         }
-      },
-      "Movie": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer"
-          },
-          "user_id": {
-            "type": "integer"
-          },
-          "name": {
-            "type": "string"
-          },
-          "poster": {
-            "type": "string"
-          },
-          "rating": {
-            "type": "number",
-            "format": "float"
-          },
-          "director_id": {
-            "type": "integer"
-          },
-          "release_year": {
-            "type": "integer"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time"
-          }
+      }
+    },
+    "Movie": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "plot": {
+          "type": "string"
+        },
+        "poster": {
+          "type": "string"
+        },
+        "watch_date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "release_year": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "boxOffice": {
+          "type": "string"
+        },
+        "runtime": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "rating": {
+          "type": "number",
+          "format": "float"
+        },
+        "youtube_video_id": {
+          "type": "string"
+        },
+        "imdbId": {
+          "type": "string"
+        },
+        "user_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "actors": {
+          "type": "string"
+        },
+        "writers": {
+          "type": "string"
+        },
+        "awards": {
+          "type": "string"
+        },
+        "genre": {
+          "type": "string"
+        },
+        "directors": {
+          "type": "string"
         }
-      },
-      "Director": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer"
-          },
-          "firstname": {
-            "type": "string"
-          },
-          "lastname": {
-            "type": "string"
-          },
-          "movies": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Movie"
-            }
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time"
+      }
+    },
+    "Director": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "movies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Movie"
           }
         }
       }
