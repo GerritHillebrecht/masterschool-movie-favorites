@@ -1,5 +1,6 @@
 import string
-from datetime import datetime
+from datetime import datetime, timedelta
+from os import environ
 
 import humanize
 import requests
@@ -8,7 +9,6 @@ from flask import render_template, request, Blueprint, current_app, redirect, ur
 from flask_login import login_required, current_user
 from sqlalchemy.exc import NoResultFound
 
-from config import is_debug
 from forms import MovieForm, UpdateMovieForm
 from schemas import Movie
 from utils.decorators import handle_no_search_results
@@ -40,6 +40,28 @@ def get_index():
         if len(movies) == 0:
             return redirect(url_for("static_routes.search_movies"))
 
+        today = datetime.now()
+        one_month_ago = today - timedelta(days=30)
+        url = f"https://api.themoviedb.org/3/discover/movie?include_adult=false&language=en-US&page=1&primary_release_date.gte={one_month_ago.strftime('%Y-%m-%d')}&sort_by=popularity.desc"
+
+        headers = {
+            "accept": "application/json",
+            "Authorization": f"Bearer {environ.get("TMDB_TOKEN")}"
+        }
+
+        response = requests.get(url, headers=headers)
+        recommendations = [
+            {
+                "name": movie["title"],
+                "poster": f"https://image.tmdb.org/t/p/original/{movie["poster_path"]}",
+                "genre": "",
+                "plot": movie["overview"]
+            }
+            for movie in response.json()["results"]
+        ]
+
+        print(recommendations)
+
         movies_sorted_rating = list(sorted(movies, key=lambda m: m.rating, reverse=True))
         movies_sorted_upcoming = list(
             sorted(
@@ -69,11 +91,6 @@ def get_index():
             for movie in movies_sorted_upcoming
         ]
 
-        relative_times_seen = [
-            humanize.naturaltime(datetime.now() - movie.watch_date)
-            for movie in movies_sorted_seen
-        ]
-
         return render_template(
             "user_movies.html",
             movies=movies,
@@ -81,7 +98,7 @@ def get_index():
             movies_sorted_upcoming=movies_sorted_upcoming[:10],
             movies_sorted_seen=movies_sorted_seen[:10],
             relative_times=relative_times,
-            relative_times_seen=relative_times_seen,
+            recommendations=recommendations,
             user=current_user
         )
     except NoResultFound as e:

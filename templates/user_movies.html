@@ -82,8 +82,9 @@ Movies for {{user.firstname}} {{user.lastname}}
 <section class="relative">
     <div class="h-[calc(100vh_-_4rem)] bg-red-400 relative">
         <div class="absolute top-4 left-4 z-10">
-            <p class="px-2 py-1 shadow rounded bg-neutral-900/60 backdrop-blur backdrop-saturate-150">Upcoming
-                movies</p>
+            <p class="px-2 py-1 shadow rounded bg-neutral-900/60 backdrop-blur backdrop-saturate-150">
+                Your next movie nights
+            </p>
         </div>
         <div class="swiper swiper-next-movies h-full">
             <div class="swiper-wrapper z-20 relative">
@@ -127,6 +128,25 @@ Movies for {{user.firstname}} {{user.lastname}}
     </a>
 </div>
 <section class="pt-6 relative z-10 bg-neutral-900 text-white">
+    <h1 class="text-3xl font-bold text-center px-6 pb-2 mb-6 border-b-4 border-b-primary-400 w-fit mx-auto">
+        Rewatch movies
+    </h1>
+
+    <!-- Horizontal slider -->
+    <div class="swiper swiper-best-movies">
+        <div class="swiper-wrapper py-6">
+            {% for movie in movies_sorted_seen %}
+            <div class="swiper-slide px-2">
+                {% set index = loop.index0 %}
+                {% include "components/movie_card.html" with context %}
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="swiper-scrollbar"></div>
+    </div>
+</section>
+<section class="pt-6 relative z-10 bg-neutral-900 text-white">
     <h1 data-tooltip-target="tooltip-default" data-tooltip-placement="bottom"
         class="text-3xl font-bold text-center px-6 pb-2 mb-6 border-b-4 border-b-primary-400 w-fit mx-auto">
         Recommendations
@@ -134,13 +154,12 @@ Movies for {{user.firstname}} {{user.lastname}}
     </h1>
     <div id="tooltip-default" role="tooltip"
          class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-        Recommendations by AI based on your saved movies
+        The most popular new movies
         <div class="tooltip-arrow" data-popper-arrow></div>
     </div>
-    <p class="text-center mb-8 "></p>
 
-    <div class="mx-auto max-w-7xl grid grid-cols-3 gap-x-4">
-        {% for movie in movies_sorted_rating %}
+    <div class="mx-auto max-w-7xl grid grid-cols-3 gap-4">
+        {% for movie in recommendations %}
         <div>
             {% set index = loop.index0 %}
             {% include "components/movie_card_recommendation.html" with context %}

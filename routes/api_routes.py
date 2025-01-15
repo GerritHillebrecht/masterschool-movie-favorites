@@ -1,3 +1,4 @@
+from os import environ
 import requests
 from flask import request, jsonify, Blueprint, current_app, render_template, redirect, url_for
 from flask_login import current_user, login_required
@@ -12,7 +13,7 @@ from utils.decorators import handle_exceptions
 from utils.filter import filter_valid_fields
 
 from dateutil import parser
-from datetime import timedelta
+from datetime import datetime, timedelta
 
 config = load_config()
 
@@ -94,11 +95,13 @@ def get_recommendations():
     Returns:
         JSON response with recommendations.
     """
-    url = "https://api.themoviedb.org/3/authentication"
+    today = datetime.now()
+    one_month_ago = today - timedelta(days=30)
+    url = f"https://api.themoviedb.org/3/discover/movie?include_adult=false&language=en-US&page=1&primary_release_date.gte={one_month_ago.strftime('%Y-%m-%d')}&sort_by=popularity.desc"
 
     headers = {
         "accept": "application/json",
-        "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzOTU2MWE3MDkwNTZmNGJkNTJjYWU2M2Q1N2FhMzQzMCIsIm5iZiI6MTczNjg2ODM0Ny42MjcsInN1YiI6IjY3ODY4MWZiYzVkMmU5NmUyNjdiZTY1ZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.qw6OZmItZzEZw-X1t2UDfm5hDhPti5I9h_Qu6TskSL0"
+        "Authorization": f"Bearer {environ.get("TMDB_TOKEN")}"
     }
 
     response = requests.get(url, headers=headers)
