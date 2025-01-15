@@ -23,7 +23,6 @@ def create_app():
 
     basedir = path.abspath(path.dirname(__file__))
     filedir = f'sqlite:///{path.join(basedir, "database", "movie_library.sqlite")}'
-    #config.get("SQLITE_DATABASE_FILE")
 
     flask_app = Flask(__name__)
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = filedir

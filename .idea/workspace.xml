@@ -4,8 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee16fce7-c09e-415e-b07c-8bcbaf2be080" name="Changes" comment="[chore] removed types">
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+    <list default="true" id="ee16fce7-c09e-415e-b07c-8bcbaf2be080" name="Changes" comment="[debug] hard-coding file-name - config isnt working on pythonanywhere">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api_routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/static_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/routes/static_routes.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -257,7 +261,47 @@
       <option name="project" value="LOCAL" />
       <updated>1736841938238</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="[chore] changed dynamic api route to hard coded">
+      <option name="closed" value="true" />
+      <created>1736867016940</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1736867016940</updated>
+    </task>
+    <task id="LOCAL-00021" summary="[chore] changed dynamic api route to hard coded">
+      <option name="closed" value="true" />
+      <created>1736867098722</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1736867098722</updated>
+    </task>
+    <task id="LOCAL-00022" summary="[feat] event-clicking routes to movie details">
+      <option name="closed" value="true" />
+      <created>1736867713764</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1736867713764</updated>
+    </task>
+    <task id="LOCAL-00023" summary="[feat] event-clicking routes to movie details">
+      <option name="closed" value="true" />
+      <created>1736867718715</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1736867718715</updated>
+    </task>
+    <task id="LOCAL-00024" summary="[debug] hard-coding file-name - config isnt working on pythonanywhere">
+      <option name="closed" value="true" />
+      <created>1736867855933</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1736867855933</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -278,6 +322,9 @@
     <MESSAGE value="[feat] added movie update functionality" />
     <MESSAGE value="[chore] updated requirements.txt" />
     <MESSAGE value="[chore] removed types" />
-    <option name="LAST_COMMIT_MESSAGE" value="[chore] removed types" />
+    <MESSAGE value="[chore] changed dynamic api route to hard coded" />
+    <MESSAGE value="[feat] event-clicking routes to movie details" />
+    <MESSAGE value="[debug] hard-coding file-name - config isnt working on pythonanywhere" />
+    <option name="LAST_COMMIT_MESSAGE" value="[debug] hard-coding file-name - config isnt working on pythonanywhere" />
   </component>
 </project>

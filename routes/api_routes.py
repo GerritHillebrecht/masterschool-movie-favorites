@@ -76,6 +76,21 @@ def get_users():
     return jsonify([user.to_dict() for user in users]), 200
 
 
+@api_routes.get("/api/v1/recommendations")
+@handle_exceptions
+def get_recommendations():
+    url = "https://api.themoviedb.org/3/authentication"
+
+    headers = {
+        "accept": "application/json",
+        "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzOTU2MWE3MDkwNTZmNGJkNTJjYWU2M2Q1N2FhMzQzMCIsIm5iZiI6MTczNjg2ODM0Ny42MjcsInN1YiI6IjY3ODY4MWZiYzVkMmU5NmUyNjdiZTY1ZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.qw6OZmItZzEZw-X1t2UDfm5hDhPti5I9h_Qu6TskSL0"
+    }
+
+    response = requests.get(url, headers=headers)
+
+    return response.json()
+
+
 @api_routes.get(f"/api/v1/calendar")
 @handle_exceptions
 @login_required

@@ -47,18 +47,36 @@ def get_index():
                 reverse=False
             )
         )
+        movies_sorted_seen = list(
+            sorted(
+                [
+                    movie
+                    for movie in movies
+                    if movie.watch_date < datetime.today()
+                ],
+                key=lambda m: m.watch_date,
+                reverse=True
+            )
+        )
 
         relative_times = [
             humanize.naturaltime(datetime.now() - movie.watch_date)
             for movie in movies_sorted_upcoming
         ]
 
+        relative_times_seen = [
+            humanize.naturaltime(datetime.now() - movie.watch_date)
+            for movie in movies_sorted_seen
+        ]
+
         return render_template(
             "user_movies.html",
             movies=movies,
             movies_sorted_rating=movies_sorted_rating[:10],
-            movies_sorted_upcoming=movies_sorted_upcoming[:8],
+            movies_sorted_upcoming=movies_sorted_upcoming[:10],
+            movies_sorted_seen=movies_sorted_seen[:10],
             relative_times=relative_times,
+            relative_times_seen=relative_times_seen,
             user=current_user
         )
     except NoResultFound as e:
