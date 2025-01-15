@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee16fce7-c09e-415e-b07c-8bcbaf2be080" name="Changes" comment="[feat] added recommendations">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/swagger.json" beforeDir="false" afterPath="$PROJECT_DIR$/static/swagger.json" afterDir="false" />
-    </list>
+    <list default="true" id="ee16fce7-c09e-415e-b07c-8bcbaf2be080" name="Changes" comment="[chore] updated swagger.json" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -331,7 +328,23 @@
       <option name="project" value="LOCAL" />
       <updated>1736947200688</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="[chore] updated swagger.json">
+      <option name="closed" value="true" />
+      <created>1736947917382</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1736947917382</updated>
+    </task>
+    <task id="LOCAL-00030" summary="[chore] updated swagger.json">
+      <option name="closed" value="true" />
+      <created>1736948486962</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1736948486962</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -359,6 +372,7 @@
     <MESSAGE value="[feat] added gunicore procfile" />
     <MESSAGE value="[chore] added docstrings" />
     <MESSAGE value="[feat] added recommendations" />
-    <option name="LAST_COMMIT_MESSAGE" value="[feat] added recommendations" />
+    <MESSAGE value="[chore] updated swagger.json" />
+    <option name="LAST_COMMIT_MESSAGE" value="[chore] updated swagger.json" />
   </component>
 </project>
