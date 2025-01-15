@@ -19,6 +19,12 @@ logging.getLogger('sqlalchemy.engine')
 
 
 def create_app():
+    """
+    Create and configure the Flask application.
+
+    Returns:
+        flask_app (Flask): The configured Flask application.
+    """
     config = load_config()
 
     basedir = path.abspath(path.dirname(__file__))
@@ -32,10 +38,22 @@ def create_app():
 
     @flask_app.context_processor
     def inject_current_path():
+        """
+        Inject the current request path into the context.
+
+        Returns:
+            dict: A dictionary containing the current path.
+        """
         return {'current_path': request.path}
 
     @flask_app.context_processor
     def inject_current_user():
+        """
+        Inject the current user into the context.
+
+        Returns:
+            dict: A dictionary containing the current user.
+        """
         return {"current_user": current_user}
 
     flask_app.register_blueprint(static_routes)
@@ -49,6 +67,15 @@ def create_app():
 
     @login_manager.user_loader
     def load_user(user_id):
+        """
+        Load a user by their user ID.
+
+        Args:
+            user_id (int): The ID of the user to load.
+
+        Returns:
+            User: The loaded user.
+        """
         return User.query.get(int(user_id))
 
     data_manager = SQLiteDataManager(flask_app)

@@ -37,6 +37,10 @@ class SQLiteDataManager(DataMangerInterface):
                 )
 
     def get_all_movies(self):
+        """
+        Returns all movies from the database.
+        :return: List of all movies.
+        """
         return db.session.query(Movie).order_by(desc(Movie.id)).all()
 
     def get_user(self, user_id):
@@ -50,7 +54,7 @@ class SQLiteDataManager(DataMangerInterface):
     def add_user(self, user: User):
         """
         Adds a user to the database.
-        :param user: A user item of type <User>
+        :param user: A user item of type <User>.
         :return: The newly created user as a json object.
         """
         return self._add_instance(user, User)
@@ -58,7 +62,7 @@ class SQLiteDataManager(DataMangerInterface):
     def add_movie(self, movie: Movie):
         """
         Adds a movie to the database.
-        :param movie: A movie item of type <Movie>
+        :param movie: A movie item of type <Movie>.
         :return: The newly created movie as a json object.
         """
         return self._add_instance(movie, Movie)
@@ -74,27 +78,26 @@ class SQLiteDataManager(DataMangerInterface):
     def get_all_directors(self):
         """
         Fetches all directors and returns them.
-        :return: list[dict]
+        :return: List of all directors.
         """
         return (db.session.query(Director)
-                # .join(Movie)
                 .all())
 
     def add_director(self, director: Director):
         """
         Adds a director to the database.
-        :param director: A director item of type <Director>
+        :param director: A director item of type <Director>.
         :return: The newly created director as a json object.
         """
         return self._add_instance(director, Director)
 
     def update_movie(self, updated_movie_data, user_id: int, movie_id: int):
         """
-        Updates a movie in the database based on given movie_id-
-        :param updated_movie_data:
-        :param user_id:
-        :param movie_id:
-        :return:
+        Updates a movie in the database based on given movie_id.
+        :param updated_movie_data: Dictionary with updated movie data.
+        :param user_id: User ID as int.
+        :param movie_id: Movie ID as int.
+        :return: The updated movie.
         """
         db_movie = db.session.query(Movie).filter(Movie.id == movie_id).one()
 

@@ -19,6 +19,9 @@ static_routes = Blueprint("static_routes", __name__)
 
 @static_routes.before_request
 def check_browser():
+    """
+    Checks the user's browser and renders a specific template if the browser is Firefox.
+    """
     user_agent = request.headers.get('User-Agent')
     if 'Firefox' in user_agent:
         return render_template("/no_firefox.html")
@@ -28,7 +31,9 @@ def check_browser():
 @login_required
 def get_index():
     """
-    :return: the home.html as file
+    Retrieves and sorts the user's movies for display on the home page.
+    Returns:
+        Rendered template with sorted movies and relative times.
     """
     try:
         movies = current_app.data_manager.get_user_movies(current_user.id)
@@ -86,6 +91,11 @@ def get_index():
 @static_routes.get("/movies/all")
 @login_required
 def get_all_movies():
+    """
+    Retrieves all movies of the current user and sorts them alphabetically.
+    Returns:
+        Rendered template with sorted movies.
+    """
     movies = current_app.data_manager.get_user_movies(current_user.id)
     if len(movies) == 0:
         return redirect(url_for("static_routes.search_movies"))
@@ -110,6 +120,11 @@ def get_all_movies():
 
 @static_routes.get("/")
 def get_landing_page():
+    """
+    Renders the landing page or redirects to the movies page if the user is authenticated.
+    Returns:
+        Rendered template or redirect.
+    """
     if current_user.is_anonymous:
         return render_template("home.html")
 
@@ -119,6 +134,11 @@ def get_landing_page():
 @static_routes.get("/calendar")
 @login_required
 def get_calendar():
+    """
+    Renders the calendar page.
+    Returns:
+        Rendered template for the calendar.
+    """
     return render_template("calendar.html")
 
 
@@ -126,6 +146,11 @@ def get_calendar():
 @login_required
 @handle_no_search_results
 def get_users_view():
+    """
+    Retrieves and displays all users.
+    Returns:
+        Rendered template with user data.
+    """
     users = current_app.data_manager.get_all_users()
     return render_template("users.html", users=users)
 
@@ -134,6 +159,11 @@ def get_users_view():
 @login_required
 @handle_no_search_results
 def custom_swagger_ui():
+    """
+    Renders the custom Swagger UI with navbar.
+    Returns:
+        Rendered template for Swagger UI.
+    """
     return render_template('swagger_ui_with_navbar.html')
 
 
@@ -141,6 +171,11 @@ def custom_swagger_ui():
 @login_required
 @handle_no_search_results
 def add_movie_form():
+    """
+    Adds a movie to the database using data from an external API and a form.
+    Returns:
+        Rendered template or redirect based on the result.
+    """
     try:
         movie_title = request.args.get("title")
         response = requests.get(f"http://www.omdbapi.com/?apikey=6999413f&t={movie_title}")
@@ -206,6 +241,11 @@ def add_movie_form():
 @login_required
 @handle_no_search_results
 def get_user_movies(user_id: int):
+    """
+    Retrieves and displays movies for a specific user.
+    Returns:
+        Rendered template with the user's movies.
+    """
     try:
         movies = current_app.data_manager.get_user_movies(user_id)
         user = current_app.data_manager.get_user(user_id)
@@ -218,6 +258,11 @@ def get_user_movies(user_id: int):
 @static_routes.get("/search")
 @login_required
 def search_movies():
+    """
+    Renders the movie search page.
+    Returns:
+        Rendered template for the search page.
+    """
     return render_template("search.html")
 
 
@@ -225,6 +270,11 @@ def search_movies():
 @login_required
 @handle_no_search_results
 def get_movie_by_id(movie_id: int):
+    """
+    Retrieves and displays details for a specific movie.
+    Returns:
+        Rendered template with movie details.
+    """
     movie = current_app.data_manager.get_movie_by_id(movie_id)
     return render_template("movie_detail.html", movie=movie)
 
@@ -233,6 +283,11 @@ def get_movie_by_id(movie_id: int):
 @login_required
 @handle_no_search_results
 def update_movie(movie_id: int):
+    """
+    Updates details of a specific movie.
+    Returns:
+        Rendered template or redirect based on the result.
+    """
     movie = current_app.data_manager.get_movie_by_id(movie_id)
     form = UpdateMovieForm()
 
@@ -257,36 +312,3 @@ def update_movie(movie_id: int):
         return redirect(url_for(f"static_routes.get_movie_by_id", movie_id=movie_id))
 
     return render_template("update_movie.html", movie=movie, form=form)
-
-
-@static_routes.get("/movie/delete/<int:movie_id>")
-@login_required
-@handle_no_search_results
-def delete_movie(movie_id: int):
-    movie = current_app.data_manager.get_movie_by_id(movie_id)
-
-    if movie.user_id == current_user.id:
-        current_app.data_manager.delete_movie(movie_id)
-        return redirect("/movies")
-
-    return redirect("https://letmegooglethat.com/?q=Try+not+to+be+an+asshole")
-
-
-@static_routes.errorhandler(404)
-def page_not_found(e):
-    return render_template('404.html'), 404
-
-
-# prevent caching of the frontend during development
-if is_debug():
-    @static_routes.after_request
-    def add_header(r):
-        """
-        Add headers to both force latest IE rendering engine or Chrome Frame,
-        and also to cache the rendered page for 10 minutes.
-        """
-        r.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
-        r.headers["Pragma"] = "no-cache"
-        r.headers["Expires"] = "0"
-        r.headers['Cache-Control'] = 'public, max-age=0'
-        return r

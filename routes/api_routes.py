@@ -33,6 +33,11 @@ api_routes.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
 @api_routes.post(f"/api/v1/movies")
 @handle_exceptions
 def add_movie_to_db():
+    """
+    Adds a movie to the database using data from an external API and a form.
+    Returns:
+        Redirects to the appropriate page based on the result.
+    """
     form = MovieForm()
 
     if form.validate_on_submit():
@@ -58,7 +63,7 @@ def add_movie_to_db():
                 "directors": movie.Directors,
                 "release_year": movie.Year
             },
-            **form,
+            **form.data,
             "user_id": current_user.id
         })
 
@@ -72,6 +77,11 @@ def add_movie_to_db():
 @api_routes.get(f"/api/v1/users")
 @handle_exceptions
 def get_users():
+    """
+    Retrieves all users from the database.
+    Returns:
+        JSON response with a list of users.
+    """
     users = current_app.data_manager.get_all_users()
     return jsonify([user.to_dict() for user in users]), 200
 
@@ -79,6 +89,11 @@ def get_users():
 @api_routes.get("/api/v1/recommendations")
 @handle_exceptions
 def get_recommendations():
+    """
+    Retrieves movie recommendations from an external API.
+    Returns:
+        JSON response with recommendations.
+    """
     url = "https://api.themoviedb.org/3/authentication"
 
     headers = {
@@ -95,6 +110,11 @@ def get_recommendations():
 @handle_exceptions
 @login_required
 def get_calendar_evets():
+    """
+    Retrieves calendar events for the current user.
+    Returns:
+        JSON response with calendar events.
+    """
     movies = current_app.data_manager.get_user_movies(current_user.id)
 
     return jsonify([
@@ -112,6 +132,11 @@ def get_calendar_evets():
 @api_routes.post(f"/api/v1/calendar/update")
 @handle_exceptions
 def update_movie_by_calendar():
+    """
+    Updates a movie's watch date based on calendar input.
+    Returns:
+        JSON response with the updated movie data.
+    """
     body = request.get_json()
     movie_id = body.get("movie_id")
     movie_date = body.get("movie_date")
@@ -133,15 +158,20 @@ def update_movie_by_calendar():
 @api_routes.post(f"/api/v1/users")
 @handle_exceptions
 def add_user():
+    """
+    Adds a new user to the database.
+    Returns:
+        JSON response with the added user's data.
+    """
     body = request.get_json()
 
     if not body:
         raise BadRequest("No JSON content found in the request.")
 
-    # Filter valid fields for the Movie model
+    # Filter valid fields for the User model
     valid_fields = filter_valid_fields(User, body)
 
-    # Create a new Movie using the filtered fields
+    # Create a new User using the filtered fields
     user = User(**valid_fields)
 
     return jsonify(current_app.data_manager.add_user(user).to_dict()), 201
@@ -150,6 +180,11 @@ def add_user():
 @api_routes.get(f"/api/v1/users/<int:user_id>")
 @handle_exceptions
 def get_movies(user_id: int):
+    """
+    Retrieves movies for a specific user.
+    Returns:
+        JSON response with the user's movies.
+    """
     movies = current_app.data_manager.get_user_movies(user_id)
     return jsonify([movie.to_dict() for movie in movies]), 200
 
@@ -157,6 +192,11 @@ def get_movies(user_id: int):
 @api_routes.post(f"/api/v1/users/<int:user_id>")
 # @handle_exceptions
 def add_movie(user_id: int):
+    """
+    Adds a movie to a specific user's collection.
+    Returns:
+        JSON response with the added movie's data.
+    """
     body = request.get_json()
 
     try:
@@ -191,6 +231,11 @@ def add_movie(user_id: int):
 @api_routes.put(f"/api/v1/users/<int:user_id>/update_movie/<int:movie_id>")
 @handle_exceptions
 def update_movie(user_id: int, movie_id: int):
+    """
+    Updates a specific movie for a user.
+    Returns:
+        JSON response with the updated movie's data.
+    """
     body = request.get_json()
     updated_movie = current_app.data_manager.update_movie(body, user_id, movie_id)
 
@@ -200,12 +245,22 @@ def update_movie(user_id: int, movie_id: int):
 @api_routes.delete(f"/api/v1/delete_movie/<int:movie_id>")
 @handle_exceptions
 def delete_movie(movie_id: int):
+    """
+    Deletes a specific movie from the database.
+    Returns:
+        JSON response with the deleted movie's data.
+    """
     return jsonify(current_app.data_manager.delete_movie(movie_id).to_dict()), 204
 
 
 @api_routes.get(f"/api/v1/directors")
 @handle_exceptions
 def get_directors():
+    """
+    Retrieves all directors from the database.
+    Returns:
+        JSON response with a list of directors.
+    """
     directors = current_app.data_manager.get_all_directors()
 
     return jsonify([director.to_dict() for director in directors]), 200
@@ -214,15 +269,20 @@ def get_directors():
 @api_routes.post(f"/api/v1/directors")
 @handle_exceptions
 def add_director():
+    """
+    Adds a new director to the database.
+    Returns:
+        JSON response with the added director's data.
+    """
     body = request.get_json()
 
     if not body:
         raise BadRequest("No JSON content found in the request.")
 
-    # Filter valid fields for the Movie model
+    # Filter valid fields for the Director model
     valid_fields = filter_valid_fields(Director, body)
 
-    # Create a new Movie using the filtered fields
+    # Create a new Director using the filtered fields
     director = Director(**valid_fields)
 
     return jsonify(current_app.data_manager.add_director(director).to_dict()), 200

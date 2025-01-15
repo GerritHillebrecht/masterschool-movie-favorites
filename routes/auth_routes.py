@@ -8,6 +8,11 @@ auth_routes = Blueprint("auth", __name__)
 
 @auth_routes.route("/register", methods=["GET", "POST"])
 def register():
+    """
+    Handles user registration. If the form is submitted and validated, a new user is created and added to the database.
+    Returns:
+        Redirects to the appropriate page based on the result.
+    """
     if current_user.is_authenticated:
         return redirect(url_for('static_routes.get_index'))
 
@@ -30,6 +35,11 @@ def register():
 
 @auth_routes.route("/login", methods=["GET", "POST"])
 def get_login():
+    """
+    Handles user login. If the form is submitted and validated, the user is logged in.
+    Returns:
+        Redirects to the appropriate page based on the result.
+    """
     if current_user.is_authenticated:
         return redirect(url_for('static_routes.get_index'))
 
@@ -47,5 +57,10 @@ def get_login():
 
 @auth_routes.get('/logout')
 def logout():
+    """
+    Logs out the current user and redirects to the landing page.
+    Returns:
+        Redirects to the landing page.
+    """
     logout_user()
     return redirect(url_for('static_routes.get_landing_page'))
